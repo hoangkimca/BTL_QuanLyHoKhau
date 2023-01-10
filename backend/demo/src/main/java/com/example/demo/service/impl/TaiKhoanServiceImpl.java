@@ -24,8 +24,6 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
   private TaiKhoanRepository taiKhoanRepository;
 
   @Override
-
-  
   public CommonResponse<Object> dangkyTaiKhoan(TaiKhoanRequest request) {
     // TODO Auto-generated method stub
 		CommonResponse<Object> response = new CommonResponse<>();
@@ -65,7 +63,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     }
 
     // TODO Auto-generated method stub
-    log.info("comment service End.");
+    log.info("them moi tai khoan end.");
     response.setStatus(EcodeConstant.SUCCESS);
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     return response;

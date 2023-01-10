@@ -1,6 +1,6 @@
 const host = "http://localhost:5000";
 
-
-export const registerRoute = `${host}/api/dangky`;
-export const loginRoute = `${host}/api/dangnhap`;
+//auth
+export const registerRoute = `${host}/api/auth/dangky`;
+export const loginRoute = `${host}/api/auth/dangnhap`;
 

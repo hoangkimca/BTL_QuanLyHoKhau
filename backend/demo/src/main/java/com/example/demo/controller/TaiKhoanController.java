@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
 @EnableAutoConfiguration
-@RequestMapping("/api")
+@RequestMapping("/api/auth")
 @CrossOrigin
 public class TaiKhoanController {
   private static final Logger log = LogManager.getLogger(TaiKhoanController.class);
