@@ -17,7 +17,7 @@ public class NhanKhau {
 
     private String nickname;
 
-    private String ngaysinh;
+    private Date ngaysinh;
 
     private String noisinh;
 
@@ -47,6 +47,8 @@ public class NhanKhau {
 
     private String quanhechuho;
 
+    //xem co dang tam tru, tam vang hay ko
+    //vd: "tamtru", "tamvang",...
     private String trangthai;
 
     private Date ngaytao;
