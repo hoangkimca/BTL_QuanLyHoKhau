@@ -9,7 +9,7 @@ import lombok.Data;
 @Document(collection = "nhankhau")
 @Data
 public class NhanKhau {
-    private int id;
+    private String id;
 
     private String mahokhau;
     
