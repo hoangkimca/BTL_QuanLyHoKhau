@@ -9,7 +9,7 @@ import lombok.Data;
 @Document(collection = "nhankhau")
 @Data
 public class NhanKhau {
-    private int id;
+    private String id;
 
     private String mahokhau;
     
@@ -17,7 +17,7 @@ public class NhanKhau {
 
     private String nickname;
 
-    private String ngaysinh;
+    private Date ngaysinh;
 
     private String noisinh;
 
@@ -47,6 +47,8 @@ public class NhanKhau {
 
     private String quanhechuho;
 
+    //xem co dang tam tru, tam vang hay ko
+    //vd: "tamtru", "tamvang",...
     private String trangthai;
 
     private Date ngaytao;

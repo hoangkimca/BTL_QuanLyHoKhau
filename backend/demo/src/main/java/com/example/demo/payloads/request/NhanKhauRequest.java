@@ -15,7 +15,7 @@ public class NhanKhauRequest {
 
   private String nickname;
 
-  private String ngaysinh;
+  private Date ngaysinh;
 
   private String noisinh;
 
