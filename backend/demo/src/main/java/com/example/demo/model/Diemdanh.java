@@ -13,5 +13,6 @@ public class Diemdanh {
 
     private String mabuoihop;
 
+    //vd: đã điểm danh hay chưa
     private String trangthai;
 }

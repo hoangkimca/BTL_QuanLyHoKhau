@@ -1,11 +1,17 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.aggregation.ArrayOperators.Size;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
@@ -71,6 +77,32 @@ public class HoKhauServiceImpl implements HoKhauService {
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     
     return response;
+  }
+
+  @Override
+  public CommonResponse<Object> danhsachHokhau(int page) {
+    CommonResponse<Object> response = new CommonResponse<>();
+    
+    ArrayList<HoKhau> danhsachhokhau = new ArrayList<>();
+    
+    Pageable paging = PageRequest.of(page, 7);
+    Page<HoKhau> pageHoKhau;
+    
+    pageHoKhau = hoKhauRepository.findAll(paging);
+    pageHoKhau.getContent();
+    if(pageHoKhau.getContent().size() > 0){
+      for(HoKhau item : pageHoKhau.getContent()){
+        danhsachhokhau.add(item);
+      }
+
+      response.setData(danhsachhokhau);
+    }else{
+      response.setData(danhsachhokhau);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+    }
+
+    return response;
+
   }
 
   

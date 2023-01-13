@@ -19,5 +19,11 @@ public class BuoiHop {
 
     private Date thoigian;
 
+    private String loai;
+
+    private Object dsduocmoi[];
+
     private int soluong;
+
+
 }

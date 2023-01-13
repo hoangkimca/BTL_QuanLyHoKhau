@@ -8,3 +8,8 @@ public class CommonResponse<T> {
   private String status;
   private String messsage;
 }
+
+//400
+//200
+//500
+//100
