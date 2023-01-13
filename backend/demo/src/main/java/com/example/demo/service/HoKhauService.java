@@ -5,4 +5,6 @@ import com.example.demo.payloads.response.CommonResponse;
 
 public interface HoKhauService {
   CommonResponse<Object> themHoKhau(HoKhauRequest request);
+
+  CommonResponse<Object> danhsachHokhau(int page);
 }

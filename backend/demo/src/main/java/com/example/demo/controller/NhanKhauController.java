@@ -22,7 +22,6 @@ import com.example.demo.service.NhanKhauService;
 @CrossOrigin
 public class NhanKhauController {
   private static final Logger log = LogManager.getLogger(NhanKhauController.class);
-    
 
   @Autowired
   HoKhauService hoKhauService;
@@ -43,6 +42,5 @@ public class NhanKhauController {
         response.setMesssage(EcodeConstant.ERR_MSG);
       }
       return response;
-
   }
 }

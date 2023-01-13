@@ -9,4 +9,5 @@ public class EcodeConstant {
 	public static String PENDING_MSG = "pending";
 	public static String EXCEPTION = "100";
 	public static String EXCEPTION_MSG = "exception";
+	public static String NULL_MSG = "empty";
 }
