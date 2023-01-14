@@ -101,6 +101,8 @@ public class HoKhauServiceImpl implements HoKhauService {
       response.setMesssage(EcodeConstant.NULL_MSG);
     }
 
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
     return response;
 
   }

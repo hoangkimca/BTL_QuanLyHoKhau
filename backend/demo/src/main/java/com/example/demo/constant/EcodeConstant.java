@@ -10,4 +10,6 @@ public class EcodeConstant {
 	public static String EXCEPTION = "100";
 	public static String EXCEPTION_MSG = "exception";
 	public static String NULL_MSG = "empty";
+	public static String EXIST_MSG = "exist";
+	public static String EXIST = "300";
 }

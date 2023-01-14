@@ -11,30 +11,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.constant.EcodeConstant;
-import com.example.demo.payloads.request.NhanKhauRequest;
+import com.example.demo.payloads.request.TamVangRequest;
 import com.example.demo.payloads.response.CommonResponse;
-import com.example.demo.service.HoKhauService;
-import com.example.demo.service.NhanKhauService;
+import com.example.demo.service.TamVangService;
 
 @RestController
 @EnableAutoConfiguration
 @RequestMapping("/api")
 @CrossOrigin
-public class NhanKhauController {
-  private static final Logger log = LogManager.getLogger(NhanKhauController.class);
-
+public class TamVangController {
+  private static final Logger log = LogManager.getLogger(TamVangController.class);
+    
   @Autowired
-  HoKhauService hoKhauService;
+  TamVangService tamVangService;
 
-  @Autowired
-  NhanKhauService nhanKhauService;
-
-  @PostMapping(value="/addnhankhau")
-  public CommonResponse<Object> addHoKhau(@RequestBody NhanKhauRequest request) {
+  @PostMapping(value="/addtamvang")
+  public CommonResponse<Object> addTamTru(@RequestBody TamVangRequest request) {
       //TODO: process POST request
       CommonResponse<Object> response = new CommonResponse<Object>();
       try {
-        response = nhanKhauService.themNhanKhau(request);
+        response = tamVangService.themTamVang(request);
       } catch (Exception e) {
         // TODO: handle exception
         log.error(e);
@@ -42,7 +38,6 @@ public class NhanKhauController {
         response.setMesssage(EcodeConstant.ERR_MSG);
       }
       return response;
-  }
 
-  
+  }
 }
