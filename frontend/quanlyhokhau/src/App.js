@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AddHoKhau from "./components/AddHoKhau";
 import HoKhau from "./pages/HoKhau";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -13,6 +14,8 @@ function App() {
         <Route path='/login' element={<Login />} />
 
         <Route path='/hokhau' element={<HoKhau />} />
+        <Route path='/addhokhau' element={<AddHoKhau />} />
+
 
       </Routes>
     </BrowserRouter>
