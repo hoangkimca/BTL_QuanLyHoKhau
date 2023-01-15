@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
 import com.example.demo.model.NhanKhau;
@@ -17,6 +18,7 @@ import com.example.demo.repository.TamTruRepository;
 import com.example.demo.repository.TamVangRepository;
 import com.example.demo.service.TamVangService;
 
+@Service
 public class TamVangServiceImpl implements TamVangService {
 
   private static final Logger log = LogManager.getLogger(TamVangServiceImpl.class);
@@ -65,6 +67,9 @@ public class TamVangServiceImpl implements TamVangService {
     try {
       tamVangRepository.save(_tamVang);
       nhanKhauRepository.save(nhankhau.get());
+      log.info("Save response {}", _tamVang.getId());
+      response.setData(_tamVang);
+
     } catch (Exception e) {
       // TODO: handle exception e.printStackTrace();
       log.error("co loi xay ra!" , e);

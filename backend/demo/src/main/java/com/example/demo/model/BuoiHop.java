@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import java.util.Date;
+import java.util.LinkedHashMap;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,6 +25,4 @@ public class BuoiHop {
     private Object dsduocmoi[];
 
     private int soluong;
-
-
 }
