@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
 import com.example.demo.model.TamTru;
@@ -14,6 +15,7 @@ import com.example.demo.payloads.response.CommonResponse;
 import com.example.demo.repository.TamTruRepository;
 import com.example.demo.service.TamTruService;
 
+@Service
 public class TamTruServiceImpl implements TamTruService {
 
   private static final Logger log = LogManager.getLogger(TamTruServiceImpl.class);

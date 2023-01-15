@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import java.util.Date;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Data;
@@ -13,6 +15,5 @@ public class Diemdanh {
 
     private String mabuoihop;
 
-    //vd: đã điểm danh hay chưa
-    private String trangthai;
+    private Date ngaytao;
 }
