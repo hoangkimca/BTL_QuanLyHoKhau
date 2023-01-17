@@ -17,6 +17,8 @@ public class NhanKhau {
 
     private String nickname;
 
+    private String tenchuho;
+
     private Date ngaysinh;
 
     private String noisinh;

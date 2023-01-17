@@ -107,5 +107,47 @@ public class HoKhauServiceImpl implements HoKhauService {
 
   }
 
+  @Override
+  public CommonResponse<Object> suaHoKhau(HoKhauRequest request) {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    Optional<HoKhau> hokhau = hoKhauRepository.findByMahokhau(request.getMahokhau());
+
+    if(hokhau.isEmpty()){
+      response.setData(null);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+
+      return response;
+    }else{
+      hokhau.get().setMahokhau(request.getMahokhau());
+      hokhau.get().setDiachi(request.getDiachi());
+      hokhau.get().setLydochuyen(request.getLydochuyen());
+      hokhau.get().setMakhuvuc(request.getMakhuvuc());
+      hokhau.get().setTenchuho(request.getTenchuho());
+    }
+    try {
+      hoKhauRepository.save(hokhau.get());
+      log.info("Save response {}", hokhau.get().getId());
+
+      response.setData(hokhau.get());
+    } catch (Exception e) {
+       // TODO: handle exception
+       e.printStackTrace();
+       log.error("co loi xay ra!" , e);
+       response.setData(null);
+       response.setMesssage(EcodeConstant.ERR_MSG);
+       response.setStatus(EcodeConstant.ERR);
+    }
+
+    //thanh cong
+    log.info("sua moi ho khau service end.");
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+
+
+
+    return response;
+  }
+
   
 }

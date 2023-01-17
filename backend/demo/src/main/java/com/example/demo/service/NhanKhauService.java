@@ -6,4 +6,9 @@ import com.example.demo.payloads.response.CommonResponse;
 
 public interface NhanKhauService {
   CommonResponse<Object> themNhanKhau(NhanKhauRequest request);
+
+  CommonResponse<Object> danhsachNhanKhau(String mahokhau);
+
+  CommonResponse<Object> suaNhanKhau(NhanKhauRequest request);
+
 }
