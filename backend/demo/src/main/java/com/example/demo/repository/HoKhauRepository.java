@@ -11,7 +11,7 @@ import com.example.demo.model.HoKhau;
 
 @Repository
 public interface HoKhauRepository extends MongoRepository<HoKhau, String> {
-    
+
     Optional<HoKhau> findByMahokhau(String mahokhau);
 
     Page<HoKhau> findAll(Pageable page);

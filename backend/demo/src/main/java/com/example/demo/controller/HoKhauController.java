@@ -15,8 +15,8 @@ import com.example.demo.payloads.request.HoKhauRequest;
 import com.example.demo.payloads.response.CommonResponse;
 import com.example.demo.service.HoKhauService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
 
 @RestController
 @EnableAutoConfiguration
@@ -24,29 +24,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 @CrossOrigin
 public class HoKhauController {
   private static final Logger log = LogManager.getLogger(HoKhauController.class);
-  
+
   @Autowired
   HoKhauService hoKhauService;
 
-  @PostMapping(value="/addhokhau")
+  @PostMapping(value = "/addhokhau")
   public CommonResponse<Object> addHoKhau(@RequestBody HoKhauRequest request) {
-      //TODO: process POST request
-      CommonResponse<Object> response = new CommonResponse<Object>();
-      try {
-        response = hoKhauService.themHoKhau(request);
-      } catch (Exception e) {
-        // TODO: handle exception
-        log.error(e);
-        response.setStatus(EcodeConstant.ERR);
-        response.setMesssage(EcodeConstant.ERR_MSG);
-      }
-      return response;
+    // TODO: process POST request
+    CommonResponse<Object> response = new CommonResponse<Object>();
+    try {
+      response = hoKhauService.themHoKhau(request);
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+    return response;
 
   }
 
-  @GetMapping(value="/gethokhau")
+  @GetMapping(value = "/gethokhau")
   public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "0") int page) {
-    //TODO: process POST request
+    // TODO: process POST request
     CommonResponse<Object> response = new CommonResponse<Object>();
     try {
       response = hoKhauService.danhsachHokhau(page);
@@ -57,7 +57,21 @@ public class HoKhauController {
       response.setMesssage(EcodeConstant.ERR_MSG);
     }
     return response;
+  }
 
-}
-  
+  @PutMapping(value = "/puthokhau")
+  public CommonResponse<Object> putHoKhau(@RequestBody HoKhauRequest request) {
+    // TODO: process POST request
+    CommonResponse<Object> response = new CommonResponse<Object>();
+    try {
+      response = hoKhauService.suaHoKhau(request);
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+    return response;
+  }
+
 }

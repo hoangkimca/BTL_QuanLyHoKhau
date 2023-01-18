@@ -9,6 +9,8 @@ import lombok.Data;
 @Document(collection = "hokhau")
 @Data
 public class HoKhau {
+    public final String setMahokhau = null;
+
     private String id;
 
     private String mahokhau;
@@ -20,13 +22,13 @@ public class HoKhau {
     private String tenchuho;
 
     private Date ngaychuyendi;
-    
+
     private String lydochuyen;
-    
+
     private String nguoithuchien;
-    
+
     private String ghichu;
-    
+
     private int diemtichluy;
 
     private Date ngaytao;
