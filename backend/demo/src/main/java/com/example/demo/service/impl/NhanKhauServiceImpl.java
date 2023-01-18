@@ -31,18 +31,18 @@ public class NhanKhauServiceImpl implements NhanKhauService {
   @Override
   public CommonResponse<Object> themNhanKhau(NhanKhauRequest request) {
     CommonResponse<Object> response = new CommonResponse<>();
-    
+
     Optional<HoKhau> hokhau = hoKhauRepository.findByMahokhau(request.getMahokhau());
 
     NhanKhau _nhanKhau = new NhanKhau();
 
-    if(hokhau.isEmpty()){
+    if (hokhau.isEmpty()) {
       response.setData(null);
       response.setMesssage(EcodeConstant.ERR_MSG);
       response.setStatus(EcodeConstant.ERR);
 
       return response;
-    }else{
+    } else {
       _nhanKhau.setMahokhau(request.getMahokhau());
       _nhanKhau.setName(request.getName());
       _nhanKhau.setNickname(request.getNickname());
@@ -57,7 +57,7 @@ public class NhanKhauServiceImpl implements NhanKhauService {
       _nhanKhau.setDiachihientai(request.getDiachihientai());
       _nhanKhau.setNgaydkythuongtru(request.getNgaydkythuongtru());
       _nhanKhau.setNoithuongtrutruocday(request.getNoithuongtrutruocday());
-      _nhanKhau.setQuanhechuho(request.getQuanhechuho());      
+      _nhanKhau.setQuanhechuho(request.getQuanhechuho());
       _nhanKhau.setCccd(request.getCccd());
       _nhanKhau.setNoicapcccd(request.getNoicapcccd());
       _nhanKhau.setNgaycapcccd(request.getNgaycapcccd());
@@ -69,23 +69,80 @@ public class NhanKhauServiceImpl implements NhanKhauService {
 
     try {
       nhanKhauRepository.save(_nhanKhau);
-      
+
       log.info("Save response {}", _nhanKhau.getId());
       response.setData(_nhanKhau);
     } catch (Exception e) {
       // TODO: handle exception
-       // TODO: handle exception
-       e.printStackTrace();
-       log.error("co loi xay ra!" , e);
-       response.setData(null);
-       response.setMesssage(EcodeConstant.ERR_MSG);
-       response.setStatus(EcodeConstant.ERR);
+      // TODO: handle exception
+      e.printStackTrace();
+      log.error("co loi xay ra!", e);
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
     }
     log.info("them moi nhan khau service end.");
     response.setStatus(EcodeConstant.SUCCESS);
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
-    
+
     return response;
   }
-    
+
+  @Override
+  public CommonResponse<Object> suaNhanKhau(NhanKhauRequest request) {
+    // TODO Auto-generated method stub
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    Optional<NhanKhau> nhankhau = nhanKhauRepository.findByMahokhau(request.getMahokhau());
+
+    if (nhankhau.isEmpty()) {
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+
+      return response;
+    } else {
+      nhankhau.get().setMahokhau(request.getMahokhau());
+      nhankhau.get().setName(request.getName());
+      nhankhau.get().setNickname(request.getNickname());
+      nhankhau.get().setNgaysinh(request.getNgaysinh());
+      nhankhau.get().setNoisinh(request.getNoisinh());
+      nhankhau.get().setGioitinh(request.getGioitinh());
+      nhankhau.get().setNguyenquan(request.getNguyenquan());
+      nhankhau.get().setDantoc(request.getDantoc());
+      nhankhau.get().setTongiao(request.getTongiao());
+      nhankhau.get().setNghenghiep(request.getNghenghiep());
+      nhankhau.get().setNoilamviec(request.getNoilamviec());
+      nhankhau.get().setDiachihientai(request.getDiachihientai());
+      nhankhau.get().setNgaydkythuongtru(request.getNgaydkythuongtru());
+      nhankhau.get().setNoithuongtrutruocday(request.getNoithuongtrutruocday());
+      nhankhau.get().setQuanhechuho(request.getQuanhechuho());
+      nhankhau.get().setCccd(request.getCccd());
+      nhankhau.get().setNoicapcccd(request.getNoicapcccd());
+      nhankhau.get().setNgaycapcccd(request.getNgaycapcccd());
+      nhankhau.get().setNguoithuchien(request.getNguoithuchien());
+      nhankhau.get().setGhichu(request.getGhichu());
+    }
+
+    try {
+      nhanKhauRepository.save(nhankhau.get());
+
+      log.info("Save response {}", nhankhau.get().getId());
+      response.setData(nhankhau.get());
+    } catch (Exception e) {
+      // TODO: handle exception
+      // TODO: handle exception
+      e.printStackTrace();
+      log.error("co loi xay ra!", e);
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+    }
+    log.info("them moi nhan khau service end.");
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+
+    return response;
+  }
+
 }
