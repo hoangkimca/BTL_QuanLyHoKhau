@@ -15,6 +15,7 @@ import com.example.demo.payloads.request.HoKhauRequest;
 import com.example.demo.payloads.response.CommonResponse;
 import com.example.demo.service.HoKhauService;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -59,5 +60,19 @@ public class HoKhauController {
     return response;
 
 }
+
+  @PutMapping(value ="/suahokhau")
+  public CommonResponse<Object> suaHoKhau(@RequestBody HoKhauRequest request){
+    CommonResponse<Object> response = new CommonResponse<Object>();
+    try {
+      response = hoKhauService.suaHoKhau(request);
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+    return response;
+  }
   
 }

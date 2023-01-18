@@ -12,7 +12,7 @@ export const gethokhauRoute = `${host}/api/gethokhau`;
 //main nhan khau
 export const addnhankhauRoute = `${host}/api/addnhankhau`;
 export const updatenhankhauRoute = `${host}/api/updatenhankhau`;
-export const getnhankhauRoute = `${host}/api/danhsachnhankhau`;
+export const getnhankhauRoute = `${host}/api/getnhankhau`;
 
 //main buoi hop
 export const addbuoihopRoute = `${host}/api/addbuoihop`;

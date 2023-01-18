@@ -1,6 +1,8 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
@@ -86,6 +88,38 @@ public class NhanKhauServiceImpl implements NhanKhauService {
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     
     return response;
+  }
+
+  @Override
+  public CommonResponse<Object> danhsachNhanKhau(String mahokhau) {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    ArrayList<NhanKhau> _danhsachnhankhau = new ArrayList<>();
+
+    List<NhanKhau> danhsachnhankhau = nhanKhauRepository.findByMahokhau(mahokhau);
+    Optional<HoKhau> hokhau = hoKhauRepository.findByMahokhau(mahokhau);
+
+    if(danhsachnhankhau.isEmpty()){
+      response.setData(null);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+
+      return response;
+    }else{
+      for(NhanKhau item : danhsachnhankhau){
+        item.setTenchuho(hokhau.get().getTenchuho());
+        _danhsachnhankhau.add(item);
+      }
+      response.setData(_danhsachnhankhau);
+    }
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+  }
+
+  @Override
+  public CommonResponse<Object> suaNhanKhau(NhanKhauRequest request) {
+    // TODO Auto-generated method stub
+    return null;
   }
     
 }

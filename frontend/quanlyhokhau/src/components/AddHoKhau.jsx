@@ -1,17 +1,57 @@
 import React, { useState } from 'react'
 import DatePicker from "react-datepicker";
-
+import Moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
+import axios from 'axios';
+import { addhokhauRoute } from '../utils/APIRoutes';
 
 
 function AddHoKhau() {
+  Moment.locale('en');
   const [startDate, setStartDate] = useState(new Date());
+  const [values, setValues] = useState({
+    mahokhau: "",
+    makhuvuc: "",
+    tenchuho: "",
+    diachi: "",
+    ngaychuyendi: new Date(),
+    lydochuyen: "",
+    nguoithuchien: "",
+    ghichu: ""
+  })
+
+  const handleChange = (event) => {
+    setValues({ ...values, [event.target.name]: event.target.value });
+    console.log("data input", values.ngaychuyendi.toISOString().split('T')[0]);
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const { mahokhau, makhuvuc, tenchuho, diachi, ngaychuyendi, lydochuyen, nguoithuchien, ghichu } = values
+    const { data } = await axios.post(addhokhauRoute, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+      mahokhau,
+      makhuvuc,
+      tenchuho,
+      diachi,
+      ngaychuyendi: values.ngaychuyendi.toISOString().split('T')[0],
+      lydochuyen,
+      nguoithuchien,
+      ghichu
+    })
+    console.log("data response", data.data);
+  }
+
   return (
     <div className='m-8'>
       <span className='ml-48 bg-slate-500 p-1 text-white'>
         <a href='/hokhau'>Quay lại</a>
       </span>
-      <form className=" divide-y divide-gray-200 w-full flex justify-center">
+      <form className=" divide-y divide-gray-200 w-full flex justify-center"
+        onSubmit={(event) => handleSubmit(event)}
+      >
         <div className="divide-y divide-gray-200 sm:space-y-5">
           <div className=" pt-8 sm:space-y-5 sm:pt-10 flex">
             <div>
@@ -30,6 +70,7 @@ function AddHoKhau() {
                     id="first-name"
                     autoComplete="given-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                    onChange={e => handleChange(e)}
                   />
                 </div>
               </div>
@@ -45,6 +86,7 @@ function AddHoKhau() {
                     id="last-name"
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                    onChange={e => handleChange(e)}
                   />
                 </div>
               </div>
@@ -60,6 +102,7 @@ function AddHoKhau() {
                     id="last-name"
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                    onChange={e => handleChange(e)}
                   />
                 </div>
               </div>
@@ -72,9 +115,9 @@ function AddHoKhau() {
                   <input
                     id="email"
                     name="diachi"
-                    type="email"
-                    autoComplete="email"
+                    type="text"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    onChange={e => handleChange(e)}
                   />
                 </div>
               </div>
@@ -84,7 +127,7 @@ function AddHoKhau() {
                   Ngày chuyển đi
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
-                  <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown selected={startDate} onChange={(date) => setStartDate(date)} />
+                  <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.ngaychuyendi} onChange={(date) => setValues({ ...values, ngaychuyendi: date })} />
                 </div>
               </div>
 
@@ -100,6 +143,7 @@ function AddHoKhau() {
                     id="street-address"
                     autoComplete="street-address"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                    onChange={e => handleChange(e)}
                   />
                 </div>
               </div>
@@ -115,6 +159,23 @@ function AddHoKhau() {
                     id="last-name"
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                    onChange={e => handleChange(e)}
+                  />
+                </div>
+              </div>
+
+              <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
+                <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
+                  Ghi chú
+                </label>
+                <div className="mt-1 sm:col-span-2 sm:mt-0">
+                  <input
+                    type="text"
+                    name="ghichu"
+                    id="last-name"
+                    autoComplete="family-name"
+                    className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
+                    onChange={e => handleChange(e)}
                   />
                 </div>
               </div>

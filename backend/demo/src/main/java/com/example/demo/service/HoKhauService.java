@@ -7,4 +7,6 @@ public interface HoKhauService {
   CommonResponse<Object> themHoKhau(HoKhauRequest request);
 
   CommonResponse<Object> danhsachHokhau(int page);
+
+  CommonResponse<Object> suaHoKhau(HoKhauRequest request);
 }

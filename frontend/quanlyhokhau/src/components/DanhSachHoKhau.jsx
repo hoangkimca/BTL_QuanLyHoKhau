@@ -1,16 +1,15 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { gethokhauRoute } from '../utils/APIRoutes';
 
-const people = [
-  { name: 'Lindsay Walton', title: 'Front-end Developer', email: 'lindsay', role: 'Membersssssssssssssssssss' },
-  // More people...
-]
 
 function DanhSachHoKhau() {
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const loadData = async () => {
       let resPage = await axios.get(`${gethokhauRoute}?page=${page}`)
@@ -36,6 +35,10 @@ function DanhSachHoKhau() {
 
   const handleAcsPage = () => {
     setPage(page + 1);
+  }
+
+  const handleSeeMore = (event) => {
+    console.log("hello", event);
   }
 
   return (
@@ -113,9 +116,9 @@ function DanhSachHoKhau() {
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.diemtichluy}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.nguoithuchien}</td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Chỉnh sửa<span className="sr-only">, {item.id}</span>
-                        </a>
+                        <button onClick={() => navigate(`/hokhau/${item.mahokhau}`)} className="text-indigo-600 hover:text-indigo-900">
+                          Xem chi tiết<span className="sr-only">, {item.id}</span>
+                        </button>
                       </td>
                     </tr>
                   ))}
