@@ -6,8 +6,9 @@ export const loginRoute = `${host}/api/auth/dangnhap`;
 
 //main ho khau
 export const addhokhauRoute = `${host}/api/addhokhau`;
-export const updatehokhauRoute = `${host}/api/updatehokhau`;
+export const updatehokhauRoute = `${host}/api/suahokhau`;
 export const gethokhauRoute = `${host}/api/gethokhau`;
+export const chitiethokhauRoute = `${host}/api/chitiethokhau`;
 
 //main nhan khau
 export const addnhankhauRoute = `${host}/api/addnhankhau`;

@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import DatePicker from "react-datepicker";
-import Moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import { addhokhauRoute } from '../utils/APIRoutes';
+import { addhokhauRoute, chitiethokhauRoute, updatehokhauRoute } from '../utils/APIRoutes';
+import { useNavigate, useParams } from 'react-router-dom';
 
-
-function AddHoKhau() {
-  Moment.locale('en');
-  const [startDate, setStartDate] = useState(new Date());
+function EditHoKhau() {
   const [values, setValues] = useState({
     mahokhau: "",
     makhuvuc: "",
@@ -19,6 +16,25 @@ function AddHoKhau() {
     nguoithuchien: "",
     ghichu: ""
   })
+  let { mahokhauchitiet } = useParams();
+  const nagivate = useNavigate();
+
+  useEffect(() => {
+    const loadData = async () => {
+      let res = await axios.get(`${chitiethokhauRoute}?mahokhau=${mahokhauchitiet}`)
+      console.log("resonse tra ve", res);
+      if (res.status == 200) {
+        let resData = await res.data.data;
+        console.log("XXX", resData);
+        const { mahokhau, makhuvuc, tenchuho, diachi, ngaychuyendi, lydochuyen, nguoithuchien, ghichu } = resData;
+
+        setValues({ ...values, mahokhau, makhuvuc, tenchuho, diachi, lydochuyen, nguoithuchien, ghichu });
+      }
+    }
+    loadData();
+  }, [nagivate])
+  console.log("mahokhau", mahokhauchitiet);
+
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
@@ -28,7 +44,7 @@ function AddHoKhau() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { mahokhau, makhuvuc, tenchuho, diachi, ngaychuyendi, lydochuyen, nguoithuchien, ghichu } = values
-    const { data } = await axios.post(addhokhauRoute, {
+    const { data } = await axios.put(updatehokhauRoute, {
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -41,8 +57,17 @@ function AddHoKhau() {
       nguoithuchien,
       ghichu
     })
-    console.log("data response", data);
+
+    console.log("data tra ve", data.data);
+    if (data.status == "000") {
+      alert("true");
+      nagivate('/hokhau');
+    } else {
+      alert("false");
+    }
   }
+
+  console.log("valuesss", values);
 
   return (
     <div className='m-8'>
@@ -55,7 +80,7 @@ function AddHoKhau() {
         <div className="divide-y divide-gray-200 sm:space-y-5">
           <div className=" pt-8 sm:space-y-5 sm:pt-10 flex">
             <div>
-              <h3 className="text-lg font-medium leading-6 text-gray-900">Thêm hộ khẩu mới</h3>
+              <h3 className="text-lg font-medium leading-6 text-gray-900">Sửa hộ khẩu</h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">Điền đầy đủ các thông tin cần thiết</p>
             </div>
             <div className="space-y-2 sm:space-y-5">
@@ -71,6 +96,7 @@ function AddHoKhau() {
                     autoComplete="given-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.mahokhau}`}
                   />
                 </div>
               </div>
@@ -87,6 +113,8 @@ function AddHoKhau() {
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.makhuvuc}`}
+
                   />
                 </div>
               </div>
@@ -103,6 +131,8 @@ function AddHoKhau() {
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.tenchuho}`}
+
                   />
                 </div>
               </div>
@@ -118,6 +148,8 @@ function AddHoKhau() {
                     type="text"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.diachi}`}
+
                   />
                 </div>
               </div>
@@ -144,6 +176,8 @@ function AddHoKhau() {
                     autoComplete="street-address"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.lydochuyen}`}
+
                   />
                 </div>
               </div>
@@ -160,6 +194,8 @@ function AddHoKhau() {
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.nguoithuchien}`}
+
                   />
                 </div>
               </div>
@@ -176,6 +212,7 @@ function AddHoKhau() {
                     autoComplete="family-name"
                     className="block w-full max-w-lg rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:max-w-xs sm:text-sm"
                     onChange={e => handleChange(e)}
+                    value={`${values.ghichu}`}
                   />
                 </div>
               </div>
@@ -187,7 +224,7 @@ function AddHoKhau() {
             type="submit"
             className="ml-[550px] w-32 justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
           >
-            Thêm hộ mới
+            Sửa hộ khẩu
           </button>
         </div>
       </form>
@@ -195,4 +232,4 @@ function AddHoKhau() {
   )
 }
 
-export default AddHoKhau
+export default EditHoKhau;

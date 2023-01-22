@@ -61,6 +61,22 @@ public class HoKhauController {
 
 }
 
+@GetMapping(value="/chitiethokhau")
+public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "") String mahokhau) {
+  //TODO: process POST request
+  CommonResponse<Object> response = new CommonResponse<Object>();
+  try {
+    response = hoKhauService.chitietHoKhau(mahokhau);
+  } catch (Exception e) {
+    // TODO: handle exception
+    log.error(e);
+    response.setStatus(EcodeConstant.ERR);
+    response.setMesssage(EcodeConstant.ERR_MSG);
+  }
+  return response;
+
+}
+
   @PutMapping(value ="/suahokhau")
   public CommonResponse<Object> suaHoKhau(@RequestBody HoKhauRequest request){
     CommonResponse<Object> response = new CommonResponse<Object>();

@@ -9,4 +9,6 @@ public interface HoKhauService {
   CommonResponse<Object> danhsachHokhau(int page);
 
   CommonResponse<Object> suaHoKhau(HoKhauRequest request);
+
+  CommonResponse<Object> chitietHoKhau(String mahokhau);
 }
