@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import ChiTietHoKhau from '../components/ChiTietHoKhau';
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
-  { name: 'Tạm trú', href: '#' },
-  { name: 'Tạm vắng', href: '#' },
+  { name: 'Tạm trú', href: '/tamtru' },
+  { name: 'Tạm vắng', href: '/tamvang' },
   { name: 'Sinh hoạt', href: '#' },
 ]
 

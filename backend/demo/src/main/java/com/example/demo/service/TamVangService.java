@@ -5,4 +5,6 @@ import com.example.demo.payloads.response.CommonResponse;
 
 public interface TamVangService {
   CommonResponse<Object> themTamVang(TamVangRequest request);
+
+  CommonResponse<Object> danhsachTamVang(int page);
 }

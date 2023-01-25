@@ -18,3 +18,11 @@ export const getnhankhauRoute = `${host}/api/getnhankhau`;
 //main buoi hop
 export const addbuoihopRoute = `${host}/api/addbuoihop`;
 export const diemdanhbuoihopRoute = `${host}/api/diemdanhbuoihop`;
+
+//main tam tru
+export const gettamtruRoute = `${host}/api/gettamtru`;
+export const updatetamtruRoute = `${host}/api/updatetamtru`;
+
+//main tam vang
+export const gettamvangRoute = `${host}/api/gettamvang`;
+export const updatetamvangRoute = `${host}/api/updatetamvang`

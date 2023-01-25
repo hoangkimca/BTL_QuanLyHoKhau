@@ -5,9 +5,12 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.constant.EcodeConstant;
@@ -39,5 +42,35 @@ public class TamTruController {
       }
       return response;
 
+  }
+
+  @GetMapping(value="/gettamtru")
+  public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "0") int page) {
+    //TODO: process POST request
+    CommonResponse<Object> response = new CommonResponse<Object>();
+    try {
+      response = tamTruService.danhsachTamTru(page);
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+    return response;
+
+}
+
+  @DeleteMapping(value="/xoatamtru")
+  public CommonResponse<Object> xoaTamTru(@RequestBody TamTruRequest request){
+    CommonResponse<Object> response = new CommonResponse<Object>();
+    try {
+      response = tamTruService.xoaTamTru(request);
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+    return response;
   }
 }

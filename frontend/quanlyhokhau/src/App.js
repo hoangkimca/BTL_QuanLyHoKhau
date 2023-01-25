@@ -8,6 +8,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import NhanKhau from "./pages/NhanKhau";
 import Register from "./pages/Register";
+import TamTru from "./pages/TamTru";
+import TamVang from "./pages/TamVang";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
         <Route path='/hokhau/:mahokhau' element={<NhanKhau />} />
         <Route path='/addnhankhau' element={<AddNhanKhau />} />
 
+        <Route path='/tamtru' element={<TamTru />} />
+
+        <Route path='/tamvang' element={<TamVang />} />
 
       </Routes>
     </BrowserRouter>
