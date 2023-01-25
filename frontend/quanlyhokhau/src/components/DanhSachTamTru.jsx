@@ -1,18 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { gethokhauRoute } from '../utils/APIRoutes';
+import { gettamtruRoute } from '../utils/APIRoutes';
 
-
-function DanhSachHoKhau() {
-
+function DanhSachTamTru() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadData = async () => {
-      let resPage = await axios.get(`${gethokhauRoute}?page=${page}`)
+      let resPage = await axios.get(`${gettamtruRoute}?page=${page}`)
       console.log("resonse tra ve", resPage);
 
       if (resPage.status == 200) {
@@ -37,12 +35,14 @@ function DanhSachHoKhau() {
     setPage(page + 1);
   }
 
-
+  const handleDelete = async (event) => {
+    console.log("DELETE", event);
+  }
   return (
     <div className="px-4 sm:px-6 lg:px-8 mt-20">
       <div className="sm:flex sm:items-center">
         <div className="sm:flex-auto">
-          <h1 className="text-xl font-semibold text-gray-900">Danh sách các hộ khẩu</h1>
+          <h1 className="text-xl font-semibold text-gray-900">Danh sách tạm trú</h1>
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <button
@@ -64,31 +64,69 @@ function DanhSachHoKhau() {
                       scope="col"
                       className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6"
                     >
-                      Mã hộ khẩu
+                      Mã giấy tạm trú
                     </th>
                     <th
                       scope="col"
                       className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500 sm:pl-6"
                     >
-                      Mã khu vực
+                      Họ tên
                     </th>
                     <th
                       scope="col"
                       className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                     >
-                      Tên chủ hộ
+                      Giới tính
                     </th>
                     <th
                       scope="col"
                       className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                     >
-                      Địa chỉ
+                      Ngày sinh
                     </th>
                     <th
                       scope="col"
                       className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
                     >
-                      Điểm tích lũy
+                      Nguyên quán
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Dân tộc
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Nghề nghiệp
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Nơi tạm trú
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Từ ngày
+                    </th>
+
+                    <th
+                      scope="col"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Đến ngày
+                    </th>
+                    <th
+                      scope="col"
+                      className="py-3 pl-4 pr-3 text-left text-xs font-medium uppercase tracking-wide text-gray-500"
+                    >
+                      Lý do
                     </th>
                     <th
                       scope="col"
@@ -105,23 +143,26 @@ function DanhSachHoKhau() {
                   {data.map((item) => (
                     <tr key={item.id}>
                       <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6">
-                        {item.mahokhau}
+                        {item.magiaytamtru}
                       </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.makhuvuc}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.tenchuho}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.diachi}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.diemtichluy}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.hoten}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.gioitinh}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.ngaysinh.split('T')[0]}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.nguyenquan}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.dantoc}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.nghenghiep}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.noitamtru}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.tungay.split('T')[0]}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.denngay.split('T')[0]}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.lydo}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.nguoithuchien}</td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <button onClick={() => navigate(`/updatehokhau/${item.mahokhau}`)} className="text-indigo-600 hover:text-indigo-900">
-                          Chỉnh sửa<span className="sr-only">, {item.id}</span>
-                        </button>
-                      </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <button onClick={() => navigate(`/hokhau/${item.mahokhau}`)} className="text-indigo-600 hover:text-indigo-900">
-                          Xem chi tiết<span className="sr-only">, {item.id}</span>
-                        </button>
-                      </td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><button
+                        type="button"
+                        className="inline-flex items-center rounded-md border border-transparent bg-red-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        onClick={() => handleDelete(item.id)}
+                      >
+                        Xóa
+                      </button></td>
                     </tr>
                   ))}
                 </tbody>
@@ -153,4 +194,4 @@ function DanhSachHoKhau() {
   )
 }
 
-export default DanhSachHoKhau
+export default DanhSachTamTru;

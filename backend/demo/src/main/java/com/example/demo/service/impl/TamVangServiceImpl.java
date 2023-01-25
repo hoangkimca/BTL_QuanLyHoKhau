@@ -1,11 +1,15 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
@@ -78,6 +82,33 @@ public class TamVangServiceImpl implements TamVangService {
       response.setStatus(EcodeConstant.ERR);
     }
     log.info("them moi tam vang service end.");
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+  }
+
+  @Override
+  public CommonResponse<Object> danhsachTamVang(int page) {
+    CommonResponse<Object> response = new CommonResponse<>();
+    
+    ArrayList<TamVang> danhsachtamvang = new ArrayList<>();
+    
+    Pageable paging = PageRequest.of(page, 5);
+    Page<TamVang> pageTamVang;
+    
+    pageTamVang = tamVangRepository.findAll(paging);
+    pageTamVang.getContent();
+    if(pageTamVang.getContent().size() > 0){
+      for(TamVang item : pageTamVang.getContent()){
+        danhsachtamvang.add(item);
+      }
+
+      response.setData(danhsachtamvang);
+    }else{
+      response.setData(danhsachtamvang);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+    }
+
     response.setStatus(EcodeConstant.SUCCESS);
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     return response;

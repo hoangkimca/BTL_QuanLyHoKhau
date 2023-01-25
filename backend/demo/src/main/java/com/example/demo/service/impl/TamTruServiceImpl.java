@@ -1,11 +1,15 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
@@ -68,6 +72,65 @@ public class TamTruServiceImpl implements TamTruService {
     log.info("them moi tam tru service end.");
     response.setStatus(EcodeConstant.SUCCESS);
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+  }
+
+  @Override
+  public CommonResponse<Object> danhsachTamTru(int page) {
+    CommonResponse<Object> response = new CommonResponse<>();
+    
+    ArrayList<TamTru> danhsachtamtru = new ArrayList<>();
+    
+    Pageable paging = PageRequest.of(page, 5);
+    Page<TamTru> pageTamTru;
+    
+    pageTamTru = tamTruRepository.findAll(paging);
+    pageTamTru.getContent();
+    if(pageTamTru.getContent().size() > 0){
+      for(TamTru item : pageTamTru.getContent()){
+        danhsachtamtru.add(item);
+      }
+
+      response.setData(danhsachtamtru);
+    }else{
+      response.setData(danhsachtamtru);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+    }
+
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+
+  }
+
+  @Override
+  public CommonResponse<Object> xoaTamTru(TamTruRequest request) {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    Optional<TamTru> tamtru = tamTruRepository.findByMagiaytamtru(request.getMagiaytamtru());
+
+    
+    if(tamtru.isEmpty()){
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+      return response;
+    }
+    try {
+      tamTruRepository.deleteByMagiaytamtru(request.getMagiaytamtru());
+    } catch (Exception e) {
+      // TODO: handle exception e.printStackTrace();
+      log.error("co loi xay ra!" , e);
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+
+      return response;
+    }
+    log.info("xoa tam tru service end.");
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+  
     return response;
   }
   

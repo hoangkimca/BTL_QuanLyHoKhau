@@ -5,4 +5,8 @@ import com.example.demo.payloads.response.CommonResponse;
 
 public interface TamTruService {
   CommonResponse<Object> themTamTru(TamTruRequest request);
+
+  CommonResponse<Object> danhsachTamTru(int page);
+
+  CommonResponse<Object> xoaTamTru(TamTruRequest request);
 }

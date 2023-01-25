@@ -5,8 +5,8 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
-  { name: 'Tạm trú', href: '#' },
-  { name: 'Tạm vắng', href: '#' },
+  { name: 'Tạm trú', href: '/tamtru' },
+  { name: 'Tạm vắng', href: '/tamvang' },
   { name: 'Sinh hoạt', href: '#' },
 ]
 

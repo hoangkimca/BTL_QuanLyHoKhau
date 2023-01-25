@@ -85,7 +85,7 @@ public class HoKhauServiceImpl implements HoKhauService {
     
     ArrayList<HoKhau> danhsachhokhau = new ArrayList<>();
     
-    Pageable paging = PageRequest.of(page, 7);
+    Pageable paging = PageRequest.of(page, 5);
     Page<HoKhau> pageHoKhau;
     
     pageHoKhau = hoKhauRepository.findAll(paging);
