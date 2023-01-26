@@ -22,7 +22,11 @@ export const diemdanhbuoihopRoute = `${host}/api/diemdanhbuoihop`;
 //main tam tru
 export const gettamtruRoute = `${host}/api/gettamtru`;
 export const updatetamtruRoute = `${host}/api/updatetamtru`;
+export const xoatamtruRoute = `${host}/api/xoatamtru`;
+export const addtamtruRoute = `${host}/api/addtamtru`;
 
 //main tam vang
 export const gettamvangRoute = `${host}/api/gettamvang`;
-export const updatetamvangRoute = `${host}/api/updatetamvang`
+export const updatetamvangRoute = `${host}/api/updatetamvang`;
+export const xoatamvangRoute = `${host}/api/xoatamvang`;
+export const addtamvangRoute = `${host}/api/addtamvang`

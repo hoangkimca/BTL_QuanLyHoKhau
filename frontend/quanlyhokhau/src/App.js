@@ -1,6 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AddHoKhau from "./components/AddHoKhau";
 import AddNhanKhau from "./components/AddNhanKhau";
+import AddTamTru from "./components/AddTamTru";
+import AddTamVang from "./components/AddTamVang";
 import ChiTietHoKhau from "./components/ChiTietHoKhau";
 import EditHoKhau from "./components/EditHoKhau";
 import HoKhau from "./pages/HoKhau";
@@ -26,8 +28,10 @@ function App() {
         <Route path='/addnhankhau' element={<AddNhanKhau />} />
 
         <Route path='/tamtru' element={<TamTru />} />
+        <Route path='/addtamtru' element={<AddTamTru />} />
 
         <Route path='/tamvang' element={<TamVang />} />
+        <Route path='/addtamvang' element={<AddTamVang />} />
 
       </Routes>
     </BrowserRouter>

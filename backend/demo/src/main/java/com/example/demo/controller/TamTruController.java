@@ -61,10 +61,11 @@ public class TamTruController {
 }
 
   @DeleteMapping(value="/xoatamtru")
-  public CommonResponse<Object> xoaTamTru(@RequestBody TamTruRequest request){
+  public CommonResponse<Object> xoaTamTru(@RequestParam(required = true, defaultValue = "") String magiaytamtru){
     CommonResponse<Object> response = new CommonResponse<Object>();
+    log.info("data gui ve {}",magiaytamtru);
     try {
-      response = tamTruService.xoaTamTru(request);
+      response = tamTruService.xoaTamTru(magiaytamtru);
     } catch (Exception e) {
       // TODO: handle exception
       log.error(e);
