@@ -8,5 +8,5 @@ public interface TamTruService {
 
   CommonResponse<Object> danhsachTamTru(int page);
 
-  CommonResponse<Object> xoaTamTru(TamTruRequest request);
+  CommonResponse<Object> xoaTamTru(String magiaytamtru);
 }

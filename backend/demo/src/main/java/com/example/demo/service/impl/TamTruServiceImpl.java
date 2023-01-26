@@ -104,10 +104,10 @@ public class TamTruServiceImpl implements TamTruService {
   }
 
   @Override
-  public CommonResponse<Object> xoaTamTru(TamTruRequest request) {
+  public CommonResponse<Object> xoaTamTru(String magiaytamtru) {
     CommonResponse<Object> response = new CommonResponse<>();
 
-    Optional<TamTru> tamtru = tamTruRepository.findByMagiaytamtru(request.getMagiaytamtru());
+    Optional<TamTru> tamtru = tamTruRepository.findByMagiaytamtru(magiaytamtru);
 
     
     if(tamtru.isEmpty()){
@@ -117,7 +117,7 @@ public class TamTruServiceImpl implements TamTruService {
       return response;
     }
     try {
-      tamTruRepository.deleteByMagiaytamtru(request.getMagiaytamtru());
+      tamTruRepository.deleteByMagiaytamtru(magiaytamtru);
     } catch (Exception e) {
       // TODO: handle exception e.printStackTrace();
       log.error("co loi xay ra!" , e);

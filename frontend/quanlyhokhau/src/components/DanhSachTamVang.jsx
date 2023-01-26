@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { gettamvangRoute } from '../utils/APIRoutes';
+import { gettamvangRoute, xoatamvangRoute } from '../utils/APIRoutes';
 
 function DanhSachTamVang() {
   const [data, setData] = useState([]);
@@ -23,7 +23,16 @@ function DanhSachTamVang() {
   }, [page])
 
   const handleDelete = async (event) => {
-    console.log("DELETE");
+    console.log('event', event);
+    const { data } = await axios.delete(`${xoatamvangRoute}?magiaytamvang=${event}`);
+    if (data.status = "000") {
+      alert("true");
+      window.location.reload(false);
+    } else {
+      alert("false");
+    }
+
+    console.log("data register", data);
   }
 
   const handleDesPage = () => {
@@ -48,7 +57,7 @@ function DanhSachTamVang() {
             type="button"
             className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
           >
-            <a href='/addhokhau'>Thêm mới</a>
+            <a href='/addtamvang'>Thêm mới</a>
           </button>
         </div>
       </div>
@@ -122,7 +131,7 @@ function DanhSachTamVang() {
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><button
                         type="button"
                         className="inline-flex items-center rounded-md border border-transparent bg-red-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        onClick={(event) => handleDelete(event)}
+                        onClick={() => handleDelete(item.magiaytamvang)}
                       >
                         Xóa
                       </button></td>

@@ -12,6 +12,8 @@ public interface TamVangRepository extends MongoRepository<TamVang, String> {
   
   Optional<TamVang> findByMagiaytamvang(String magiaytamvang);
 
+  Optional<TamVang> deleteByMagiaytamvang(String magiaytamvang);
+
   Page<TamVang> findAll(Pageable page);
 
 }

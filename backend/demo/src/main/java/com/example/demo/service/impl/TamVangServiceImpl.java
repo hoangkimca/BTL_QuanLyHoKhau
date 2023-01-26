@@ -113,5 +113,35 @@ public class TamVangServiceImpl implements TamVangService {
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     return response;
   }
+
+  @Override
+  public CommonResponse<Object> xoaTamVang(String magiaytamvang) {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    Optional<TamVang> tamvang = tamVangRepository.findByMagiaytamvang(magiaytamvang);
+
     
+    if(tamvang.isEmpty()){
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+      return response;
+    }
+    try {
+      tamVangRepository.deleteByMagiaytamvang(magiaytamvang);
+    } catch (Exception e) {
+      // TODO: handle exception e.printStackTrace();
+      log.error("co loi xay ra!" , e);
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+
+      return response;
+    }
+    log.info("xoa tam vang service end.");
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+  
+    return response;
+  }
 }

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { gettamtruRoute } from '../utils/APIRoutes';
+import { gettamtruRoute, xoatamtruRoute } from '../utils/APIRoutes';
 
 function DanhSachTamTru() {
   const [data, setData] = useState([]);
@@ -36,7 +36,14 @@ function DanhSachTamTru() {
   }
 
   const handleDelete = async (event) => {
-    console.log("DELETE", event);
+    const { data } = await axios.delete(`${xoatamtruRoute}?magiaytamtru=${event}`);
+    if (data.status = "000") {
+      alert("true");
+      window.location.reload(false);
+    } else {
+      alert("false");
+    }
+    console.log("data register", data);
   }
   return (
     <div className="px-4 sm:px-6 lg:px-8 mt-20">
@@ -49,7 +56,7 @@ function DanhSachTamTru() {
             type="button"
             className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
           >
-            <a href='/addhokhau'>Thêm mới</a>
+            <a href='/addtamtru'>Thêm mới</a>
           </button>
         </div>
       </div>
@@ -159,7 +166,7 @@ function DanhSachTamTru() {
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><button
                         type="button"
                         className="inline-flex items-center rounded-md border border-transparent bg-red-600 px-3 py-2 text-sm font-medium leading-4 text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item.magiaytamtru)}
                       >
                         Xóa
                       </button></td>
