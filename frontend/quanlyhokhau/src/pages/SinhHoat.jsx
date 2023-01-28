@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import DanhSachHoKhau from '../components/DanhSachHoKhau'
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
+import DanhSachSinhHoat from '../components/DanhSachSinhHoat'
+
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
   { name: 'Tạm trú', href: '/tamtru' },
@@ -11,7 +12,9 @@ const navigation = [
   { name: 'Sinh hoạt', href: '/sinhhoat' },
 ]
 
-function HoKhau() {
+
+function SinhHoat() {
+
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState();
   const navigate = useNavigate();
@@ -31,7 +34,6 @@ function HoKhau() {
     navigate("/login");
   }
   console.log("is", isLogin);
-
   return (
     <div className='w-full h-full flex-col gap-4'>
       <Popover>
@@ -122,9 +124,9 @@ function HoKhau() {
         </Transition>
       </Popover>
 
-      <DanhSachHoKhau />
+      <DanhSachSinhHoat />
     </div>
   )
 }
 
-export default HoKhau
+export default SinhHoat;

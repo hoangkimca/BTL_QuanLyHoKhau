@@ -127,6 +127,7 @@ public class NhanKhauServiceImpl implements NhanKhauService {
       response.setData(null);
       response.setMesssage(EcodeConstant.ERR_MSG);
       response.setStatus(EcodeConstant.ERR);
+      log.info("hereeee");
 
       return response;
     } else {
@@ -159,7 +160,6 @@ public class NhanKhauServiceImpl implements NhanKhauService {
       response.setData(nhankhau.get());
     } catch (Exception e) {
       // TODO: handle exception
-      // TODO: handle exception
       e.printStackTrace();
       log.error("co loi xay ra!", e);
       response.setData(null);
@@ -172,5 +172,40 @@ public class NhanKhauServiceImpl implements NhanKhauService {
 
     return response;
   }
-    
+
+  @Override
+  public CommonResponse<Object> chitietNhanKhau(String idnhankhau) {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    Optional<NhanKhau> nhankhau = nhanKhauRepository.findById(idnhankhau);
+
+    if(nhankhau.isEmpty()){
+      response.setData(null);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+
+      return response;
+    }else{
+      response.setData(nhankhau.get());
+    }
+    try {
+      nhanKhauRepository.save(nhankhau.get());
+      log.info("Save response {}", nhankhau.get().getId());
+
+      response.setData(nhankhau.get());
+    } catch (Exception e) {
+       // TODO: handle exception
+       e.printStackTrace();
+       log.error("co loi xay ra!" , e);
+       response.setData(null);
+       response.setMesssage(EcodeConstant.ERR_MSG);
+       response.setStatus(EcodeConstant.ERR);
+    }
+
+    //thanh cong
+    log.info("chi tiet nhan khau service end.");
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+
+    return response;
+  }
 }

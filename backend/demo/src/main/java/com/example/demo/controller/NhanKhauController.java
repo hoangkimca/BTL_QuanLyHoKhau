@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -59,7 +60,36 @@ public class NhanKhauController {
       response.setMesssage(EcodeConstant.ERR_MSG);
     }
     return response;
-
 }
   
+@GetMapping(value="/chitietnhankhau")
+public CommonResponse<Object> getNhanKhau(@RequestParam(required = true, defaultValue = "") String idnhankhau) {
+  //TODO: process POST request
+  log.info("hereere {}",idnhankhau);
+  CommonResponse<Object> response = new CommonResponse<Object>();
+  try {
+    response = nhanKhauService.chitietNhanKhau(idnhankhau);
+  } catch (Exception e) {
+    // TODO: handle exception
+    log.error(e);
+    response.setStatus(EcodeConstant.ERR);
+    response.setMesssage(EcodeConstant.ERR_MSG);
+  }
+  return response;
+}
+
+@PutMapping(value="/suanhankhau")
+  public CommonResponse<Object> suaNhanKhau(@RequestBody NhanKhauRequest request) {
+    //TODO: process POST request
+    CommonResponse<Object> response = new CommonResponse<Object>();
+    try {
+      response = nhanKhauService.suaNhanKhau(request);
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+    return response;
+}
 }

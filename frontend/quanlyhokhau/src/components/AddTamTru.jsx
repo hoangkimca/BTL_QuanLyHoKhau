@@ -61,7 +61,7 @@ function AddTamTru() {
   return (
     <div className='m-8'>
       <span className='ml-48 bg-slate-500 p-1 text-white'>
-        <a href='/hokhau'>Quay lại</a>
+        <a href='/tamtru'>Quay lại</a>
       </span>
       <form className=" divide-y divide-gray-200 w-full flex justify-center"
         onSubmit={(event) => handleSubmit(event)}

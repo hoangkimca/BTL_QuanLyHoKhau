@@ -12,12 +12,14 @@ export const chitiethokhauRoute = `${host}/api/chitiethokhau`;
 
 //main nhan khau
 export const addnhankhauRoute = `${host}/api/addnhankhau`;
-export const updatenhankhauRoute = `${host}/api/updatenhankhau`;
+export const updatenhankhauRoute = `${host}/api/suanhankhau`;
 export const getnhankhauRoute = `${host}/api/getnhankhau`;
+export const chitietnhankhauRoute = `${host}/api/chitietnhankhau`;
 
 //main buoi hop
 export const addbuoihopRoute = `${host}/api/addbuoihop`;
 export const diemdanhbuoihopRoute = `${host}/api/diemdanhbuoihop`;
+export const getbuoihopRoute = `${host}/api/getbuoihop`;
 
 //main tam tru
 export const gettamtruRoute = `${host}/api/gettamtru`;
