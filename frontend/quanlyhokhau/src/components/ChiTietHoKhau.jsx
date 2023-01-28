@@ -3,18 +3,6 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getnhankhauRoute } from '../utils/APIRoutes';
 
-const transactions = [
-  {
-    id: 'AAPS0L',
-    company: 'Chase & Co.',
-    share: 'CAC',
-    commission: '+$4.37',
-    price: '$3,509.00',
-    quantity: '12.00',
-    netAmount: '$4,397.00',
-  },
-  // More transactions...
-]
 
 function ChiTietHoKhau() {
   const [data, setData] = useState([]);
@@ -159,7 +147,7 @@ function ChiTietHoKhau() {
                       <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.nguoithuchien}</td>
                       <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.ghichu}</td>
                       <td className="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <button onClick={() => navigate(`/updatenhankhau/${item.mahokhau}`)} className="text-indigo-600 hover:text-indigo-900">
+                        <button onClick={() => navigate(`/updatenhankhau/${item.id}`)} className="text-indigo-600 hover:text-indigo-900">
                           Chỉnh sửa<span className="sr-only">, {item.id}</span>
                         </button>
                       </td>

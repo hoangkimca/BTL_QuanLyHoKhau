@@ -9,7 +9,7 @@ const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
   { name: 'Tạm trú', href: '/tamtru' },
   { name: 'Tạm vắng', href: '/tamvang' },
-  { name: 'Sinh hoạt', href: '#' },
+  { name: 'Sinh hoạt', href: '/sinhhoat' },
 ]
 
 

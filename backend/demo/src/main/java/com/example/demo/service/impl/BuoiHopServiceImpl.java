@@ -1,10 +1,14 @@
 package com.example.demo.service.impl;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
@@ -76,5 +80,33 @@ public class BuoiHopServiceImpl implements BuoiHopService {
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     
     return response;
+  }
+
+  @Override
+  public CommonResponse<Object> danhsachBuoiHop(int page) {
+    CommonResponse<Object> response = new CommonResponse<>();
+    
+    ArrayList<BuoiHop> danhsachbuoihop = new ArrayList<>();
+    
+    Pageable paging = PageRequest.of(page, 5);
+    Page<BuoiHop> pageBuoiHop;
+    
+    pageBuoiHop = buoiHopRepository.findAll(paging);
+    pageBuoiHop.getContent();
+    if(pageBuoiHop.getContent().size() > 0){
+      for(BuoiHop item : pageBuoiHop.getContent()){
+        danhsachbuoihop.add(item);
+      }
+
+      response.setData(danhsachbuoihop);
+    }else{
+      response.setData(danhsachbuoihop);
+      response.setMesssage(EcodeConstant.NULL_MSG);
+    }
+
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+
   }
 }

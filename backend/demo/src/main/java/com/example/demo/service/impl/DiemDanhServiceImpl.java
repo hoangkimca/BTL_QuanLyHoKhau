@@ -83,7 +83,6 @@ public class DiemDanhServiceImpl implements DiemDanhService {
     response.setStatus(EcodeConstant.SUCCESS);
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     
-
     return response;
   }
     

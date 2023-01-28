@@ -11,4 +11,6 @@ public interface NhanKhauService {
 
   CommonResponse<Object> suaNhanKhau(NhanKhauRequest request);
 
+  CommonResponse<Object> chitietNhanKhau(String idnhankhau);
+
 }
