@@ -54,7 +54,11 @@ public class DiemDanhServiceImpl implements DiemDanhService {
       response.setMesssage(EcodeConstant.ERR_MSG);
       response.setStatus(EcodeConstant.ERR);
       return response;
-
+    }else if(request.getMabuoihop().contains("hanhchinh")){
+      response.setData(null);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+      response.setStatus(EcodeConstant.ERR);
+      return response;
     }else if(diemdanh.isPresent()){
       response.setData(null);
       response.setMesssage(EcodeConstant.EXIST_MSG);

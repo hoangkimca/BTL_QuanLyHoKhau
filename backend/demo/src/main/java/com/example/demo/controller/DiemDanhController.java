@@ -38,6 +38,5 @@ public class DiemDanhController {
         response.setMesssage(EcodeConstant.ERR_MSG);
       }
       return response;
-
   }
 }

@@ -48,11 +48,11 @@ public class BuoiHopServiceImpl implements BuoiHopService {
       _buoiHop.setDiadiem(request.getDiadiem());
       _buoiHop.setThoigian(request.getThoigian());
       _buoiHop.setNoidung(request.getNoidung());
-      if(request.getLoai().equals("hanhchinh")){
+      if(request.getLoai().equals("Hành chính")){
         _buoiHop.setDsduocmoi(request.getDsduocmoi());
         _buoiHop.setLoai(request.getLoai());
         _buoiHop.setSoluong(request.getDsduocmoi().length);
-      }else if(request.getLoai().equals("sinhhoat")){
+      }else if(request.getLoai().equals("Sinh hoạt")){
         _buoiHop.setLoai(request.getLoai());
       }else{
         response.setData(null);

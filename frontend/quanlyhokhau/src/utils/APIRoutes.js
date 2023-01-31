@@ -20,6 +20,7 @@ export const chitietnhankhauRoute = `${host}/api/chitietnhankhau`;
 export const addbuoihopRoute = `${host}/api/addbuoihop`;
 export const diemdanhbuoihopRoute = `${host}/api/diemdanhbuoihop`;
 export const getbuoihopRoute = `${host}/api/getbuoihop`;
+export const diemdanhRoute = `${host}/api/diemdanh`;
 
 //main tam tru
 export const gettamtruRoute = `${host}/api/gettamtru`;

@@ -111,9 +111,11 @@ function DanhSachSinhHoat() {
                         </span>
                       </td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">
-                          Xem chi tiết<span className="sr-only">, {item.name}</span>
-                        </a>
+                        {item.loai.includes("Sinh hoạt") ? <button onClick={() => navigate(`/diemdanh/${item.id}`)} className=" text-indigo-600 hover:text-indigo-900">
+                          Điểm danh
+                        </button> : <button className="text-indigo-600 cursor-no-drop ">
+                          Điểm danh
+                        </button>}
                       </td>
                     </tr>
                   ))}
