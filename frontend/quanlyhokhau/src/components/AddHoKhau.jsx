@@ -42,6 +42,13 @@ function AddHoKhau() {
       ghichu
     })
     console.log("data response", data);
+
+    if (data.status == '000') {
+      alert("true");
+      navigate('/hokhau');
+    } else {
+      alert("false");
+    }
   }
 
   return (

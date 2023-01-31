@@ -5,6 +5,7 @@ import AddSinhHoat from "./components/AddSinhHoat";
 import AddTamTru from "./components/AddTamTru";
 import AddTamVang from "./components/AddTamVang";
 import ChiTietHoKhau from "./components/ChiTietHoKhau";
+import DiemDanhSinhHoat from "./components/DiemDanhSinhHoat";
 import EditHoKhau from "./components/EditHoKhau";
 import EditNhanKhau from "./components/EditNhanKhau";
 import HoKhau from "./pages/HoKhau";
@@ -40,6 +41,7 @@ function App() {
 
         <Route path='/sinhhoat' element={<SinhHoat />} />
         <Route path='/addsinhhoat' element={<AddSinhHoat />} />
+        <Route path='/diemdanh/:idsinhhoat' element={<DiemDanhSinhHoat />} />
 
       </Routes>
     </BrowserRouter>

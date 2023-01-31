@@ -22,7 +22,6 @@ public class BuoiHopRequest {
 
   private String loai;
 
-  private Object dsduocmoi[];
+  private String dsduocmoi[];
 
-  private int soluong;
 }
