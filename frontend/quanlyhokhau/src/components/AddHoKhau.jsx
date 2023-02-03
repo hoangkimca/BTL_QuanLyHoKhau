@@ -5,10 +5,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import { addhokhauRoute } from '../utils/APIRoutes';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddHoKhau() {
   Moment.locale('en');
-  const [startDate, setStartDate] = useState(new Date());
   const [values, setValues] = useState({
     mahokhau: "",
     makhuvuc: "",
@@ -20,9 +21,18 @@ function AddHoKhau() {
     ghichu: ""
   })
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("data input", values.ngaychuyendi.toISOString().split('T')[0]);
   }
 
   const handleSubmit = async (event) => {
@@ -41,13 +51,12 @@ function AddHoKhau() {
       nguoithuchien,
       ghichu
     })
-    console.log("data response", data);
 
-    if (data.status == '000') {
-      alert("true");
-      navigate('/hokhau');
+    if (data.status == "000") {
+      toast.success("Thêm mới hộ khẩu thành công", toastOptions);
+      nagivate('/hokhau');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
 

@@ -1,21 +1,30 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { gettamvangRoute, xoatamvangRoute } from '../utils/APIRoutes';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function DanhSachTamVang() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
-  const navigate = useNavigate();
+
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
   useEffect(() => {
     const loadData = async () => {
       let resPage = await axios.get(`${gettamvangRoute}?page=${page}`)
-      console.log("resonse tra ve", resPage);
 
       if (resPage.status == 200) {
         let res = await resPage.data.data;
-        console.log("danh sach cach ho", res);
         setData(res);
       }
     }
@@ -23,16 +32,14 @@ function DanhSachTamVang() {
   }, [page])
 
   const handleDelete = async (event) => {
-    console.log('event', event);
     const { data } = await axios.delete(`${xoatamvangRoute}?magiaytamvang=${event}`);
-    if (data.status = "000") {
-      alert("true");
+    if (data.status == "000") {
+      toast.success("Xóa tạm vắng thành công", toastOptions);
       window.location.reload(false);
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
 
-    console.log("data register", data);
   }
 
   const handleDesPage = () => {

@@ -16,6 +16,7 @@ import Register from "./pages/Register";
 import SinhHoat from "./pages/SinhHoat";
 import TamTru from "./pages/TamTru";
 import TamVang from "./pages/TamVang";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path='/diemdanh/:idsinhhoat' element={<DiemDanhSinhHoat />} />
 
       </Routes>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

@@ -3,7 +3,6 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom'
-import DanhSachTamTru from '../components/DanhSachTamTru'
 import DanhSachTamVang from '../components/DanhSachTamVang'
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
@@ -28,11 +27,9 @@ function TamVang() {
     loadData();
   }, [isLogin, userInfo])
   if (userInfo) {
-    console.log("user info", JSON.parse(userInfo).taikhoan);
   } else {
     navigate("/login");
   }
-  console.log("is", isLogin);
 
   return (
     <div className='w-full h-full flex-col gap-4'>

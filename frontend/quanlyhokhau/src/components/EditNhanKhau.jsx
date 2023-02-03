@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import { addhokhauRoute, chitiethokhauRoute, chitietnhankhauRoute, updatehokhauRoute, updatenhankhauRoute } from '../utils/APIRoutes';
+import { chitietnhankhauRoute, updatenhankhauRoute } from '../utils/APIRoutes';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function EditNhanKhau() {
   const [values, setValues] = useState({
@@ -31,13 +35,21 @@ function EditNhanKhau() {
   let { idnhankhau } = useParams();
   const nagivate = useNavigate();
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   useEffect(() => {
     const loadData = async () => {
       let res = await axios.get(`${chitietnhankhauRoute}?idnhankhau=${idnhankhau}`)
-      console.log("resonse tra ve", res);
       if (res.status == 200) {
         let resData = await res.data.data;
-        console.log("XXX", resData);
         const { mahokhau, name, nickname, ngaysinh, noisinh, gioitinh, nguyenquan, dantoc, tongiao, nghenghiep, noilamviec,
           cccd, ngaycapcccd, noicapcccd, diachihientai, ngaydkythuongtru, noithuongtrutruocday, quanhechuho, nguoithuchien, ghichu } = resData;
 
@@ -49,7 +61,6 @@ function EditNhanKhau() {
     }
     loadData();
   }, [nagivate])
-  console.log("mahokhau", idnhankhau);
 
 
   const handleChange = (event) => {
@@ -72,16 +83,14 @@ function EditNhanKhau() {
       noithuongtrutruocday, quanhechuho, nguoithuchien, ghichu
     })
 
-    console.log("data tra ve", data);
     if (data.status == "000") {
-      alert("true");
+      toast.success("Thay đổi nhân khẩu thành công", toastOptions);
       nagivate('/hokhau');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
 
-  console.log("valuesss", values);
   return (
     <div className='m-8'>
       <span className='ml-48 bg-slate-500 p-1 text-white'>

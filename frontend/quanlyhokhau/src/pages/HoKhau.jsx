@@ -26,11 +26,9 @@ function HoKhau() {
     loadData();
   }, [isLogin, userInfo])
   if (userInfo) {
-    console.log("user info", JSON.parse(userInfo).taikhoan);
   } else {
     navigate("/login");
   }
-  console.log("is", isLogin);
 
   return (
     <div className='w-full h-full flex-col gap-4'>

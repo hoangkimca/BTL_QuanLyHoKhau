@@ -1,21 +1,30 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
 import { gettamtruRoute, xoatamtruRoute } from '../utils/APIRoutes';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function DanhSachTamTru() {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
-  const navigate = useNavigate();
+
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
   useEffect(() => {
     const loadData = async () => {
       let resPage = await axios.get(`${gettamtruRoute}?page=${page}`)
-      console.log("resonse tra ve", resPage);
 
       if (resPage.status == 200) {
         let res = await resPage.data.data;
-        console.log("danh sach cach ho", res);
         setData(res);
       }
     }
@@ -37,13 +46,13 @@ function DanhSachTamTru() {
 
   const handleDelete = async (event) => {
     const { data } = await axios.delete(`${xoatamtruRoute}?magiaytamtru=${event}`);
-    if (data.status = "000") {
-      alert("true");
+
+    if (data.status == "000") {
+      toast.success("Xóa tạm trú thành công", toastOptions);
       window.location.reload(false);
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
-    console.log("data register", data);
   }
   return (
     <div className="px-4 sm:px-6 lg:px-8 mt-20">

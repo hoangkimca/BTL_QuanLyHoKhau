@@ -13,11 +13,8 @@ function DanhSachHoKhau() {
   useEffect(() => {
     const loadData = async () => {
       let resPage = await axios.get(`${gethokhauRoute}?page=${page}`)
-      console.log("resonse tra ve", resPage);
-
       if (resPage.status == 200) {
         let res = await resPage.data.data;
-        console.log("danh sach cach ho", res);
         setData(res);
       }
     }

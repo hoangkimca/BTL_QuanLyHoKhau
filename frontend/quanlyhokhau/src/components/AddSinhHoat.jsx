@@ -4,6 +4,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { addbuoihopRoute } from '../utils/APIRoutes';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function AddSinhHoat() {
   const [values, setValues] = useState({
     loai: "Hành chính",
@@ -14,10 +18,18 @@ function AddSinhHoat() {
     thoigian: new Date(),
     dsduocmoi: []
   })
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("event", event.target.value);
   }
 
   const handleSubmit = async (event) => {
@@ -35,12 +47,11 @@ function AddSinhHoat() {
       thoigian: values.thoigian.toISOString().split('T')[0],
       dsduocmoi: values.dsduocmoi.split(",")
     })
-    console.log("values", data);
-    if (data.status == '000') {
-      alert("true");
-      navigate('/sinhhoat');
+    if (data.status == "000") {
+      toast.success("Thêm mới sinh hoạt/buổi họp thành công", toastOptions);
+      nagivate('/sinhhoat');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
   return (
