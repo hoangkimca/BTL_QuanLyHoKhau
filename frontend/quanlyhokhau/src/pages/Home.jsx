@@ -51,7 +51,7 @@ function Home() {
   const handleLogout = () => {
     localStorage.clear();
     setUserInfo(localStorage.getItem("tai-khoan"));
-    toast.success("Đăng xuất", toastOptions);
+    toast.success("Đăng xuất thành công", toastOptions);
 
     navigate("/");
   }
