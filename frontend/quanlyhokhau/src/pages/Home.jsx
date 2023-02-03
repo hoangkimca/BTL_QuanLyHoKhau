@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Menu } from '@headlessui/react'
+import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
+import { useNavigate } from 'react-router-dom'
 
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
@@ -10,12 +13,14 @@ const navigation = [
   { name: 'Sinh hoạt', href: '/sinhhoat' },
 ]
 
-
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
 
 function Home() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const loadData = async () => {
       setUserInfo(localStorage.getItem("tai-khoan"));
@@ -24,12 +29,18 @@ function Home() {
       }
     }
     loadData();
-  }, [isLogin, userInfo])
+  }, [isLogin, userInfo, navigate])
   if (userInfo) {
     console.log("user info", JSON.parse(userInfo).taikhoan);
   }
   console.log("is", isLogin);
 
+  const handleLogout = () => {
+    console.log("logout");
+    localStorage.clear();
+    setUserInfo(localStorage.getItem("tai-khoan"));
+    navigate("/")
+  }
 
   return (
     <div className="relative overflow-hidden bg-white">
@@ -73,7 +84,41 @@ function Home() {
                     </a>
                   ))}
                   {isLogin && userInfo ?
-                    <p className="font-medium text-indigo-600 hover:text-indigo-500">{JSON.parse(userInfo).taikhoan}</p> :
+                    <Menu as="div" className="relative inline-block text-left">
+                      <div>
+                        <Menu.Button className="flex items-center rounded-full  text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+                          <p className="cursor-pointer font-medium text-indigo-600 hover:text-indigo-500">{JSON.parse(userInfo).taikhoan}</p>
+                        </Menu.Button>
+                      </div>
+
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-100"
+                        enterFrom="transform opacity-0 scale-95"
+                        enterTo="transform opacity-100 scale-100"
+                        leave="transition ease-in duration-75"
+                        leaveFrom="transform opacity-100 scale-100"
+                        leaveTo="transform opacity-0 scale-95"
+                      >
+                        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                          <div className="py-1">
+                            <Menu.Item>
+                              {({ active }) => (
+                                <button
+                                  className={classNames(
+                                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                                    'block w-full px-4 py-2 text-left text-sm'
+                                  )}
+                                  onClick={handleLogout}
+                                >
+                                  Đăng xuất
+                                </button>
+                              )}
+                            </Menu.Item>
+                          </div>
+                        </Menu.Items>
+                      </Transition>
+                    </Menu> :
                     <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                       Đăng nhập
                     </a>
