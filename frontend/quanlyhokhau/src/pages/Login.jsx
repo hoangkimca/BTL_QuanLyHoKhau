@@ -4,6 +4,9 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { loginRoute } from '../utils/APIRoutes';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function Login() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
@@ -11,11 +14,20 @@ function Login() {
     matkhau: ""
   })
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
       const { taikhoan, matkhau } = values;
-      console.log("___values___", values);
       const { data } = await axios.post(loginRoute, {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -23,14 +35,13 @@ function Login() {
         taikhoan,
         matkhau
       })
-      console.log("data register", data.data);
 
       if (data.status == "000") {
         localStorage.setItem("tai-khoan", JSON.stringify(data.data));
+        toast.success("Đăng nhập thành công", toastOptions);
         navigate("/");
-        alert("true");
       } else {
-        alert("sai");
+        toast.error("Lỗi, vui lòng đăng nhập lại", toastOptions);
       }
     }
   }
@@ -43,13 +54,9 @@ function Login() {
     const { taikhoan, matkhau } = values;
 
     if (matkhau === "" || taikhoan === "") {
-      return false;
-    } else if (matkhau.length < 8) {
-      return false;
-    } else if (taikhoan === "") {
+      toast.warning("Vui lòng điền đầy đủ thông tin", toastOptions);
       return false;
     }
-
     return true;
   }
 

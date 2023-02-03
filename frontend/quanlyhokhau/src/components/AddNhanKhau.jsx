@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
 import DatePicker from "react-datepicker";
-import Moment from 'moment';
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import { addnhankhauRoute } from '../utils/APIRoutes';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function AddNhanKhau() {
-  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     mahokhau: "",
@@ -32,9 +33,18 @@ function AddNhanKhau() {
     ghichu: ""
   })
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("values change", values);
   }
 
   const handleSubmit = async (event) => {
@@ -56,13 +66,12 @@ function AddNhanKhau() {
       ngaydangkythuongtru: values.ngaydangkythuongtru.toISOString().split('T')[0],
       noithuongtrutruocday, quanhechuho, nguoithuchien, ghichu
     })
-    console.log("data response", data);
 
-    if (data.status == '000') {
-      alert("true");
-      navigate('/hokhau');
+    if (data.status == "000") {
+      toast.success("Thêm mới nhân khẩu thành công", toastOptions);
+      nagivate('/hokhau');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
 

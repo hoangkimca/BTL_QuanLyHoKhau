@@ -2,18 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getbuoihopRoute } from '../utils/APIRoutes';
-const people = [
-  {
-    name: 'Lindsay Walton',
-    title: 'Front-end Developer',
-    department: 'Optimization',
-    email: 'lindsay.walton@example.com',
-    role: 'Member',
-    image:
-      'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-  },
-  // More people...
-]
 
 function DanhSachSinhHoat() {
 
@@ -24,11 +12,8 @@ function DanhSachSinhHoat() {
   useEffect(() => {
     const loadData = async () => {
       let resPage = await axios.get(`${getbuoihopRoute}?page=${page}`)
-      console.log("resonse tra ve", resPage);
-
       if (resPage.status == 200) {
         let res = await resPage.data.data;
-        console.log("danh sach cach ho", res);
         setData(res);
       }
     }

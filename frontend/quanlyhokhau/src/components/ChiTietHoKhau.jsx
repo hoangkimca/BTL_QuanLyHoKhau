@@ -12,10 +12,8 @@ function ChiTietHoKhau() {
   useEffect(() => {
     const loadData = async () => {
       let res = await axios.get(`${getnhankhauRoute}?mahokhau=${mahokhau}`)
-      console.log("resonse tra ve", res);
       if (res.status == 200) {
         let resData = await res.data.data;
-        console.log("XXX", resData);
         setData(resData);
       }
 

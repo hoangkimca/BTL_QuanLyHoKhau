@@ -3,7 +3,6 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Menu } from '@headlessui/react'
-import { EllipsisVerticalIcon } from '@heroicons/react/20/solid'
 import { useNavigate } from 'react-router-dom'
 
 const navigation = [
@@ -31,15 +30,12 @@ function Home() {
     loadData();
   }, [isLogin, userInfo, navigate])
   if (userInfo) {
-    console.log("user info", JSON.parse(userInfo).taikhoan);
   }
-  console.log("is", isLogin);
 
   const handleLogout = () => {
-    console.log("logout");
     localStorage.clear();
     setUserInfo(localStorage.getItem("tai-khoan"));
-    navigate("/")
+    navigate("/");
   }
 
   return (

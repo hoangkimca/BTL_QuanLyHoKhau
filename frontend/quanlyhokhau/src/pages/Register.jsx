@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import axios from "axios"
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { registerRoute } from '../utils/APIRoutes';
 import { ChevronLeftIcon } from '@heroicons/react/24/outline';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -17,11 +19,21 @@ function Register() {
     nhaplaimatkhau: ""
   })
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
       const { hoten, taikhoan, matkhau, nhaplaimatkhau } = values;
-      console.log("___values___", values);
       const { data } = await axios.post(registerRoute, {
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -30,14 +42,13 @@ function Register() {
         taikhoan,
         matkhau
       })
-      console.log("data register", data.data);
 
       if (data.status == "000") {
         localStorage.setItem("tai-khoan", JSON.stringify(data.data));
+        toast.success("Đăng ký thành công", toastOptions);
         navigate("/login");
-        alert("true");
       } else {
-        alert("sai");
+        toast.error("Lỗi, vui lòng đăng ký lại", toastOptions);
       }
     }
   }
@@ -50,14 +61,19 @@ function Register() {
     const { hoten, taikhoan, matkhau, nhaplaimatkhau } = values;
 
     if (matkhau === "" || nhaplaimatkhau === "" || taikhoan === "" || hoten === "") {
+      toast.warning("Vui lòng điền đầy đủ các thông tin!", toastOptions);
       return false;
     } else if (hoten.length < 6) {
+      toast.warning("Họ tên ít nhất 6 ký tự", toastOptions);
       return false;
     } else if (matkhau.length < 8) {
+      toast.warning("Mật khẩu ít nhất 8 ký  tự", toastOptions);
       return false;
     } else if (taikhoan === "") {
+      toast.warning("Không được để trống tài khoản", toastOptions);
       return false;
     } else if (matkhau !== nhaplaimatkhau) {
+      toast.warning("Mật khẩu không khớp", toastOptions);
       return false;
     }
 

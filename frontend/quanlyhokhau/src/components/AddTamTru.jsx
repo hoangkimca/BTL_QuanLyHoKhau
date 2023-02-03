@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import { addhokhauRoute, addtamtruRoute } from '../utils/APIRoutes';
-import { useNavigate } from 'react-router-dom';
+import { addtamtruRoute } from '../utils/APIRoutes';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddTamTru() {
-  const navigate = useNavigate();
-  const [startDate, setStartDate] = useState(new Date());
   const [values, setValues] = useState({
     magiaytamtru: "",
     hoten: "",
@@ -23,10 +23,18 @@ function AddTamTru() {
     lydo: "",
     nguoithuchien: ""
   })
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("values change", values);
   }
 
   const handleSubmit = async (event) => {
@@ -51,11 +59,11 @@ function AddTamTru() {
       lydo,
       nguoithuchien
     })
-    if (data.status = "000") {
-      alert("true");
-      navigate("/tamtru");
+    if (data.status == "000") {
+      toast.success("Thêm mới tạm trú thành công", toastOptions);
+      nagivate('/tamtru');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
   return (

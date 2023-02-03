@@ -1,26 +1,36 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom';
 import { diemdanhRoute } from '../utils/APIRoutes';
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function DiemDanhSinhHoat() {
-  const navigate = useNavigate();
   let { idsinhhoat } = useParams();
   const [values, setValues] = useState({
     mabuoihop: idsinhhoat,
     mahokhau: ""
   })
-  console.log("id", idsinhhoat);
+
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
 
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("values change", values);
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log("he")
     const { mabuoihop, mahokhau } = values;
 
     const { data } = await axios.post(diemdanhRoute, {
@@ -31,13 +41,11 @@ function DiemDanhSinhHoat() {
       mahokhau
     })
 
-    console.log("data tra ve", data);
-
     if (data.status == "000") {
-      alert("true");
-      navigate('/sinhhoat');
+      toast.success("Điểm danh thành công", toastOptions);
+      nagivate('/sinhhoat');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
 

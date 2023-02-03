@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import { addhokhauRoute, addtamtruRoute, addtamvangRoute } from '../utils/APIRoutes';
-import { useNavigate } from 'react-router-dom';
+import { addtamvangRoute } from '../utils/APIRoutes';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 function AddTamVang() {
-  const navigate = useNavigate();
   const [values, setValues] = useState({
     magiaytamvang: "",
     mahokhau: "",
@@ -18,9 +20,18 @@ function AddTamVang() {
     nguoithuchien: ""
   })
 
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("values change", values);
   }
 
   const handleSubmit = async (event) => {
@@ -38,11 +49,11 @@ function AddTamVang() {
       lydo,
       nguoithuchien
     })
-    if (data.status = "000") {
-      alert("true");
-      navigate("/tamvang");
+    if (data.status == "000") {
+      toast.success("Thêm mới tạm vắng thành công", toastOptions);
+      nagivate('/tamvang');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
 

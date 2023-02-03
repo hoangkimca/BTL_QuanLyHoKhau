@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
-import { addhokhauRoute, chitiethokhauRoute, updatehokhauRoute } from '../utils/APIRoutes';
+import { chitiethokhauRoute, updatehokhauRoute } from '../utils/APIRoutes';
 import { useNavigate, useParams } from 'react-router-dom';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function EditHoKhau() {
   const [values, setValues] = useState({
@@ -16,16 +19,25 @@ function EditHoKhau() {
     nguoithuchien: "",
     ghichu: ""
   })
+
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   let { mahokhauchitiet } = useParams();
   const nagivate = useNavigate();
 
   useEffect(() => {
     const loadData = async () => {
       let res = await axios.get(`${chitiethokhauRoute}?mahokhau=${mahokhauchitiet}`)
-      console.log("resonse tra ve", res);
       if (res.status == 200) {
         let resData = await res.data.data;
-        console.log("XXX", resData);
         const { mahokhau, makhuvuc, tenchuho, diachi, ngaychuyendi, lydochuyen, nguoithuchien, ghichu } = resData;
 
         setValues({ ...values, mahokhau, makhuvuc, tenchuho, diachi, lydochuyen, nguoithuchien, ghichu });
@@ -33,12 +45,10 @@ function EditHoKhau() {
     }
     loadData();
   }, [nagivate])
-  console.log("mahokhau", mahokhauchitiet);
 
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });
-    console.log("data input", values.ngaychuyendi.toISOString().split('T')[0]);
   }
 
   const handleSubmit = async (event) => {
@@ -58,16 +68,13 @@ function EditHoKhau() {
       ghichu
     })
 
-    console.log("data tra ve", data.data);
     if (data.status == "000") {
-      alert("true");
+      toast.success("Thay đổi hộ khẩu thành công", toastOptions);
       nagivate('/hokhau');
     } else {
-      alert("false");
+      toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
-
-  console.log("valuesss", values);
 
   return (
     <div className='m-8'>
