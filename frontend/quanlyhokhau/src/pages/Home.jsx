@@ -6,7 +6,8 @@ import { Menu } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
 import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
@@ -24,6 +25,17 @@ function Home() {
   const [isLogin, setIsLogin] = useState(false);
   const [userInfo, setUserInfo] = useState();
   const navigate = useNavigate();
+
+  const toastOptions = {
+    position: "top-right",
+    autoClose: 5000,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  };
+
   useEffect(() => {
     const loadData = async () => {
       setUserInfo(localStorage.getItem("tai-khoan"));
@@ -39,6 +51,8 @@ function Home() {
   const handleLogout = () => {
     localStorage.clear();
     setUserInfo(localStorage.getItem("tai-khoan"));
+    toast.success("Đăng xuất thành công", toastOptions);
+
     navigate("/");
   }
 
