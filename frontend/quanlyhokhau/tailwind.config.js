@@ -8,5 +8,10 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/forms'),
+    require("@tailwindcss/line-clamp"),
+    function ({ addVariant }) {
+      addVariant("child", "& > *");
+      addVariant("child-hover", "& > *:hover");
+    },
   ],
 }

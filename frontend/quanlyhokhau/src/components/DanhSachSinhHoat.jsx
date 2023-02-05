@@ -1,12 +1,17 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, Fragment } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { getbuoihopRoute } from '../utils/APIRoutes';
+import { Dialog, Transition } from '@headlessui/react'
+import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import ChiTietBuoiHop from './ChiTietBuoiHop';
+
 
 function DanhSachSinhHoat() {
 
   const [data, setData] = useState([]);
   const [page, setPage] = useState(0);
+  const [open, setOpen] = useState(false)
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,6 +37,7 @@ function DanhSachSinhHoat() {
   const handleAcsPage = () => {
     setPage(page + 1);
   }
+
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 mt-16">
@@ -67,6 +73,9 @@ function DanhSachSinhHoat() {
                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                       Loại
                     </th>
+                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      Chi tiết
+                    </th>
 
                     <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                       <span className="sr-only">Xem chi tiết</span>
@@ -75,35 +84,9 @@ function DanhSachSinhHoat() {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {data.map((item) => (
-                    <tr key={item.id}>
-                      <td className="whitespace-nowrap text-sm sm:pl-6">
-                        <div className="flex items-center">
-                          <div className="">
-                            <div className="font-medium text-gray-900">{item.chude}</div>
-                            <div className="text-gray-500">{item.noidung}</div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-900">{item.diadiem}</div>
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <div className="text-gray-500">{item.thoigian.split('T')[0]}</div>
-                      </td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        <span className={`inline-flex rounded-full p-2 text-sm font-semibold leading-5 text-green-800 ${item.loai == "Hành chính" ? "text-green-800 bg-green-100 " : "text-sky-800 bg-sky-100"}`}>
-                          {item.loai}
-                        </span>
-                      </td>
-                      <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                        {item.loai.includes("Sinh hoạt") ? <button onClick={() => navigate(`/diemdanh/${item.id}`)} className=" text-indigo-600 hover:text-indigo-900">
-                          Điểm danh
-                        </button> : <button className="text-indigo-600 cursor-no-drop ">
-                          Điểm danh
-                        </button>}
-                      </td>
-                    </tr>
-                  ))}
+                    <ChiTietBuoiHop item={item} />
+                  ))
+                  }
                 </tbody>
               </table>
             </div>
