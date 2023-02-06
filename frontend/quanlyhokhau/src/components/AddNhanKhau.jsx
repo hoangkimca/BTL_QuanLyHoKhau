@@ -6,9 +6,11 @@ import { addnhankhauRoute } from '../utils/APIRoutes';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 
 function AddNhanKhau() {
+  const nagivate = useNavigate();
 
   const [values, setValues] = useState({
     mahokhau: "",
@@ -26,7 +28,7 @@ function AddNhanKhau() {
     noicapcccd: "",
     ngaycapcccd: new Date(),
     diachihientai: "",
-    ngaydangkythuongtru: new Date(),
+    ngaydkythuongtru: new Date(),
     noithuongtrutruocday: "",
     quanhechuho: "",
     nguoithuchien: "",
@@ -50,7 +52,7 @@ function AddNhanKhau() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const { mahokhau, name, nickname, ngaysinh, noisinh, gioitinh, nguyenquan, dantoc, tongiao,
-      nghenghiep, noilamviec, cccd, noicapcccd, ngaycapcccd, diachihientai, ngaydangkythuongtru,
+      nghenghiep, noilamviec, cccd, noicapcccd, ngaycapcccd, diachihientai, ngaydkythuongtru,
       noithuongtrutruocday, quanhechuho, nguoithuchien, ghichu } = values;
 
     const { data } = await axios.post(addnhankhauRoute, {
@@ -63,7 +65,7 @@ function AddNhanKhau() {
       nghenghiep, noilamviec, cccd, noicapcccd,
       ngaycapcccd: values.ngaycapcccd.toISOString().split('T')[0],
       diachihientai,
-      ngaydangkythuongtru: values.ngaydangkythuongtru.toISOString().split('T')[0],
+      ngaydkythuongtru: values.ngaydkythuongtru.toISOString().split('T')[0],
       noithuongtrutruocday, quanhechuho, nguoithuchien, ghichu
     })
 
@@ -85,7 +87,7 @@ function AddNhanKhau() {
         onSubmit={(event) => handleSubmit(event)}
       >
         <div className="divide-y divide-gray-200 sm:space-y-5">
-          <div className=" pt-8 sm:space-y-5 sm:pt-10 flex">
+          <div className=" pt-8 sm:space-y-5 sm:pt-10">
             <div>
               <h3 className="text-lg font-medium leading-6 text-gray-900">Thêm nhân khẩu mới</h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">Điền đầy đủ các thông tin cần thiết</p>
@@ -94,6 +96,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Mã hộ khẩu
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -110,6 +113,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Họ và tên
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -142,6 +146,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Ngày sinh
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.ngaysinh} onChange={(date) => setValues({ ...values, ngaysinh: date })} />
@@ -151,6 +156,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nơi sinh
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -166,6 +172,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Giới tính
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -181,6 +188,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Dân tộc
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -196,6 +204,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Tôn giáo
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -211,6 +220,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nguyên quán
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -226,6 +236,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nghề nghiệp
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -241,6 +252,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nơi làm việc
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -256,6 +268,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   CCCD
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -271,6 +284,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Ngày cấp CCCD
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.ngaycapcccd} onChange={(date) => setValues({ ...values, ngaycapcccd: date })} />
@@ -280,6 +294,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nơi cấp CCCD
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -295,6 +310,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Địa chỉ hiện tại
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -310,15 +326,17 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Ngày đăng ký thường trú
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
-                  <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.ngaydangkythuongtru} onChange={(date) => setValues({ ...values, ngaydkythuongtru: date })} />
+                  <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.ngaydkythuongtru} onChange={(date) => setValues({ ...values, ngaydkythuongtru: date })} />
                 </div>
               </div>
 
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nơi thường trú trước đây
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -334,6 +352,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Quan hệ chủ hộ
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -349,6 +368,7 @@ function AddNhanKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Người thực hiện
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input

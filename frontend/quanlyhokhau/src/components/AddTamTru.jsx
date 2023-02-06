@@ -75,7 +75,7 @@ function AddTamTru() {
         onSubmit={(event) => handleSubmit(event)}
       >
         <div className="divide-y divide-gray-200 sm:space-y-5">
-          <div className=" pt-8 sm:space-y-5 sm:pt-10 flex">
+          <div className=" pt-8 sm:space-y-5 sm:pt-10">
             <div>
               <h3 className="text-lg font-medium leading-6 text-gray-900">Thêm tạm trú mới</h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">Điền đầy đủ các thông tin cần thiết</p>

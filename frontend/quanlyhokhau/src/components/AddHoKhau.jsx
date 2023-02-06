@@ -69,7 +69,7 @@ function AddHoKhau() {
         onSubmit={(event) => handleSubmit(event)}
       >
         <div className="divide-y divide-gray-200 sm:space-y-5">
-          <div className=" pt-8 sm:space-y-5 sm:pt-10 flex">
+          <div className=" pt-8 sm:space-y-5 sm:pt-10">
             <div>
               <h3 className="text-lg font-medium leading-6 text-gray-900">Thêm hộ khẩu mới</h3>
               <p className="mt-1 max-w-2xl text-sm text-gray-500">Điền đầy đủ các thông tin cần thiết</p>
@@ -78,6 +78,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Mã hộ khẩu
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -94,6 +95,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Mã khu vực
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -110,6 +112,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Tên chủ hộ
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -126,6 +129,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Địa chỉ thường trú
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -141,6 +145,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Ngày chuyển đi
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.ngaychuyendi} onChange={(date) => setValues({ ...values, ngaychuyendi: date })} />
@@ -151,6 +156,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="street-address" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Lý do chuyển
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -167,6 +173,7 @@ function AddHoKhau() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Người thực hiện
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input

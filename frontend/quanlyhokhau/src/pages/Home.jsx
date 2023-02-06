@@ -8,6 +8,8 @@ import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import BieuDoTuoi from '../components/BieuDoTuoi'
+import BieuDoTTruTVang from '../components/BieuDoTTruTVang'
 
 const navigation = [
   { name: 'Hộ khẩu', href: '/hokhau' },
@@ -229,82 +231,9 @@ function Home() {
         </div>
       </div>
 
-      <div className='ml-96 mr-96 mt-36' id='bieudotuoi'>
-        <Bar
-          data={{
-            labels: [
-              "Dưới 10t",
-              "10-27",
-              "27-40",
-              "40-60",
-              "Trên 60t"
-            ],
-            datasets: [
-              {
-                label: "BIỂU ĐỒ THỐNG KÊ ĐỘ TUỔI CỦA TỔ DÂN PHỐ",
-                backgroundColor: [
-                  "rgba(255, 99, 132, 0.2)",
-                  "rgba(255, 159, 64, 0.2)",
-                  "rgba(255, 205, 86, 0.2)",
-                  "rgba(75, 192, 192, 0.2)",
-                  "rgba(153, 102, 255, 0.2)"
-                ],
-                borderColor: [
-                  'rgb(255, 99, 132)',
-                  'rgb(255, 159, 64)',
-                  'rgb(255, 205, 86)',
-                  'rgb(75, 192, 192)',
-                  'rgb(54, 162, 235)',
-                ],
-                borderWidth: 1,
-                data: [10, 5, 4, 4, 3]
-              }
-            ]
-          }}
-          options={{
-            legend: { display: false },
-            title: {
-              display: true,
-              text: "Predicted world population (millions) in 2050"
-            }, animation: {
-              duration: 1500,
-            }
-          }}
-        />
-      </div>
+      <BieuDoTuoi />
 
-      <div className='ml-96 mr-96 mt-36' >
-        <Line
-          data={{
-            labels: ["tháng 1", "tháng 2", "tháng 3", "tháng 4", "tháng 5", "tháng 6",
-              "tháng 7", "tháng 8", "tháng 9", "tháng 10", "tháng 11", "tháng 12"],
-            datasets: [
-              {
-                data: [4, 2, 1, 1, 2, 3, 7, 1, 0, 6],
-                label: "Tạm trú",
-                borderColor: "#e8c3b9",
-                fill: true
-              },
-              {
-                data: [6, 10, 2, 2, 7, 2, 8, 1, 3, 4],
-                label: "Tạm vắng",
-                borderColor: "#c45850",
-                fill: false
-              }
-            ]
-          }}
-          options={{
-            title: {
-              display: true,
-              text: "Thống kê số lượng người tạm trú/ tạm vắng"
-            },
-            legend: {
-              display: true,
-              position: "bottom"
-            }
-          }}
-        />
-      </div>
+      <BieuDoTTruTVang />
     </div>
   )
 }

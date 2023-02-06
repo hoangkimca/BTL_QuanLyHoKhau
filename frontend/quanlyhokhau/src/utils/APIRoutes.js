@@ -33,3 +33,7 @@ export const gettamvangRoute = `${host}/api/gettamvang`;
 export const updatetamvangRoute = `${host}/api/updatetamvang`;
 export const xoatamvangRoute = `${host}/api/xoatamvang`;
 export const addtamvangRoute = `${host}/api/addtamvang`
+
+
+//main thong ke
+export const thongketuoiRoute = `${host}/api/thongketuoi`;

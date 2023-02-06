@@ -21,6 +21,8 @@ function ChiTietHoKhau() {
     loadData();
   }, [navigate])
 
+  console.log("dataa", data);
+
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 mt-8">
@@ -28,9 +30,9 @@ function ChiTietHoKhau() {
         <div className="sm:flex-auto flex">
           <h1 className="text-xl font-semibold text-gray-600">Các thông tin chi tiết của hộ
           </h1>
-          <p className='ml-2 text-xl font-semibold text-gray-900'>
+          {data ? <p className='ml-2 text-xl font-semibold text-gray-900'>
             {data[0]?.tenchuho}
-          </p>
+          </p> : <p></p>}
         </div>
         <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
           <button
@@ -126,7 +128,7 @@ function ChiTietHoKhau() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
-                  {data.map((item) => (
+                  {data?.map((item) => (
                     <tr key={item.id}>
                       <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-900 sm:pl-6">
                         {item.name}
