@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -62,11 +64,13 @@ public class ThongKeServiceImpl implements ThongKeService {
     CommonResponse<Object> response = new CommonResponse<>();
 
     List<TamVang> tamvang = tamVangRepository.findAll();
-    ArrayList<Date> danhsachthongke = new ArrayList<>();
+    ArrayList<Integer> danhsachthongke = new ArrayList<>();
+    Calendar calendar = new GregorianCalendar();
     
     if(tamvang.size() > 0){
       for(TamVang item : tamvang){
-        danhsachthongke.add(item.getTungay());
+        calendar.setTime(item.getTungay());
+        danhsachthongke.add(calendar.get(Calendar.YEAR));
       }
       response.setData(danhsachthongke);
     }
@@ -81,11 +85,12 @@ public class ThongKeServiceImpl implements ThongKeService {
     CommonResponse<Object> response = new CommonResponse<>();
 
     List<TamTru> tamtru = tamTruRepository.findAll();
-    ArrayList<Date> danhsachthongke = new ArrayList<>();
-
+    ArrayList<Integer> danhsachthongke = new ArrayList<>();
+    Calendar calendar = new GregorianCalendar();
     if(tamtru.size() > 0){
       for(TamTru item : tamtru){
-        danhsachthongke.add(item.getTungay());
+        calendar.setTime(item.getTungay());
+        danhsachthongke.add(calendar.get(Calendar.YEAR));
       }
 
       response.setData(danhsachthongke);

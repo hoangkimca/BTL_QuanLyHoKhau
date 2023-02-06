@@ -37,7 +37,6 @@ function BieuDoTuoi() {
   useEffect(() => {
     const loadData = async () => {
       let res = await axios.get(`${thongketuoiRoute}`)
-      console.log("data tra ve", res);
       setAges(res.data.data)
     }
     loadData();
@@ -49,7 +48,6 @@ function BieuDoTuoi() {
     });
   }
 
-  console.log("age", tke);
 
   return (
     <div className='ml-96 mr-96 mt-36' id='bieudotuoi'>
