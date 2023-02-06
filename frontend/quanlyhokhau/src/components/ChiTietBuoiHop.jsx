@@ -14,9 +14,6 @@ function ChiTietBuoiHop({ item }) {
     }
   }
 
-
-
-
   return (
     <tr key={item.id}>
       <td className="whitespace-nowrap text-sm sm:pl-6">

@@ -38,4 +38,36 @@ public class ThongKeController {
 
     return response;
   }
+
+  @GetMapping(value = "/thongketamvang")
+  public CommonResponse<Object> thongKeTamVang(){
+    CommonResponse<Object> response = new CommonResponse<Object>();
+
+    try {
+      response = thongKeService.thongkeTamVang();
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+
+    return response;
+  }
+
+  @GetMapping(value = "/thongketamtru")
+  public CommonResponse<Object> thongKeTamTru(){
+    CommonResponse<Object> response = new CommonResponse<Object>();
+
+    try {
+      response = thongKeService.thongkeTamTru();
+    } catch (Exception e) {
+      // TODO: handle exception
+      log.error(e);
+      response.setStatus(EcodeConstant.ERR);
+      response.setMesssage(EcodeConstant.ERR_MSG);
+    }
+
+    return response;
+  }
 }

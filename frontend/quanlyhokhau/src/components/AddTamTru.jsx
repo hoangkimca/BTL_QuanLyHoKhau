@@ -6,6 +6,8 @@ import { addtamtruRoute } from '../utils/APIRoutes';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
+
 
 function AddTamTru() {
   const [values, setValues] = useState({
@@ -32,6 +34,7 @@ function AddTamTru() {
     progress: undefined,
     theme: "light",
   };
+  const nagivate = useNavigate();
 
   const handleChange = (event) => {
     setValues({ ...values, [event.target.name]: event.target.value });

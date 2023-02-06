@@ -14,8 +14,12 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.constant.EcodeConstant;
 import com.example.demo.model.NhanKhau;
+import com.example.demo.model.TamTru;
+import com.example.demo.model.TamVang;
 import com.example.demo.payloads.response.CommonResponse;
 import com.example.demo.repository.NhanKhauRepository;
+import com.example.demo.repository.TamTruRepository;
+import com.example.demo.repository.TamVangRepository;
 import com.example.demo.service.ThongKeService;
 
 
@@ -25,6 +29,12 @@ public class ThongKeServiceImpl implements ThongKeService {
 
   @Autowired
   NhanKhauRepository nhanKhauRepository;
+
+  @Autowired
+  TamVangRepository tamVangRepository;
+
+  @Autowired
+  TamTruRepository tamTruRepository;
 
   @Override
   public CommonResponse<Object> thongkeTuoi() {
@@ -42,6 +52,45 @@ public class ThongKeServiceImpl implements ThongKeService {
       }
       response.setData(danhsachthongke);
     }
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+  }
+
+  @Override
+  public CommonResponse<Object> thongkeTamVang() {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    List<TamVang> tamvang = tamVangRepository.findAll();
+    ArrayList<Date> danhsachthongke = new ArrayList<>();
+    
+    if(tamvang.size() > 0){
+      for(TamVang item : tamvang){
+        danhsachthongke.add(item.getTungay());
+      }
+      response.setData(danhsachthongke);
+    }
+
+    response.setStatus(EcodeConstant.SUCCESS);
+    response.setMesssage(EcodeConstant.SUCCESS_MSG);
+    return response;
+  }
+
+  @Override
+  public CommonResponse<Object> thongkeTamTru() {
+    CommonResponse<Object> response = new CommonResponse<>();
+
+    List<TamTru> tamtru = tamTruRepository.findAll();
+    ArrayList<Date> danhsachthongke = new ArrayList<>();
+
+    if(tamtru.size() > 0){
+      for(TamTru item : tamtru){
+        danhsachthongke.add(item.getTungay());
+      }
+
+      response.setData(danhsachthongke);
+    }
+
     response.setStatus(EcodeConstant.SUCCESS);
     response.setMesssage(EcodeConstant.SUCCESS_MSG);
     return response;

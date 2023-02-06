@@ -9,11 +9,4 @@ public class CommonResponse<T> {
   private String messsage;
 }
 
-//400
-//200
-//500
-//100
-
-//data: đăng nhập: 
-  //vd: {
 

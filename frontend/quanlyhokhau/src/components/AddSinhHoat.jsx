@@ -6,9 +6,11 @@ import { addbuoihopRoute } from '../utils/APIRoutes';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 
 function AddSinhHoat() {
+  const nagivate = useNavigate();
   const [values, setValues] = useState({
     loai: "Hành chính",
     id: "",

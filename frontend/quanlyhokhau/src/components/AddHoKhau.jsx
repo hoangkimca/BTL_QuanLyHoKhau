@@ -7,9 +7,11 @@ import { addhokhauRoute } from '../utils/APIRoutes';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 function AddHoKhau() {
   Moment.locale('en');
+  const nagivate = useNavigate();
   const [values, setValues] = useState({
     mahokhau: "",
     makhuvuc: "",

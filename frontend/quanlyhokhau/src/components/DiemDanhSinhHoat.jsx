@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { diemdanhRoute } from '../utils/APIRoutes';
 
 import { toast } from 'react-toastify';
@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function DiemDanhSinhHoat() {
+  const nagivate = useNavigate();
   let { idsinhhoat } = useParams();
   const [values, setValues] = useState({
     mabuoihop: idsinhhoat,

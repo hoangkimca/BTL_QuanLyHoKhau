@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Bar } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 import { thongketuoiRoute } from '../utils/APIRoutes';
-import { useNavigationType } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 Chart.register(...registerables);
 
 function BieuDoTuoi() {
-  const nagivate = useNavigationType();
+  const nagivate = useNavigate();
   const [ages, setAges] = useState([]);
 
   const tke = [
@@ -22,15 +22,15 @@ function BieuDoTuoi() {
 
   const classifyAge = age => {
     if (age <= 10) {
-      tke[0]['<10'] += 1;
+      tke[0]['<10']++;
     } else if (age > 10 && age <= 27) {
-      tke[1]['10-27'] += 1;
+      tke[1]['10-27']++;
     } else if (age > 27 && age <= 40) {
-      tke[2]['27-40'] += 1;
+      tke[2]['27-40']++;
     } else if (age > 40 && age <= 60) {
-      tke[3]['40-60'] += 1;
+      tke[3]['40-60']++;
     } else {
-      tke[4]['>60'] += 1;
+      tke[4]['>60']++;
     }
   };
 
