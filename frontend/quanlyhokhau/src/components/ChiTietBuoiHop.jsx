@@ -1,12 +1,15 @@
 import React, { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { useNavigate } from 'react-router-dom';
 
 function ChiTietBuoiHop({ item }) {
   const [open, setOpen] = useState(false);
   const [arr, setArr] = useState([]);
 
   const handleOpenModal = (item) => {
+    const navigate = useNavigate();
+
     console.log("item", item);
     setOpen(true);
     if (item.dsduocmoi) {
