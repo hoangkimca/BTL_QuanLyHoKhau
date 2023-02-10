@@ -46,7 +46,7 @@ function AddSinhHoat() {
       chude,
       noidung,
       diadiem,
-      thoigian: values.thoigian.toISOString().split('T')[0],
+      thoigian: values.thoigian,
       dsduocmoi: values.dsduocmoi.split(",")
     })
     if (data.status == "000") {
@@ -56,6 +56,9 @@ function AddSinhHoat() {
       toast.error("Lỗi, vui lòng thử lại", toastOptions);
     }
   }
+
+  console.log("time", values.thoigian)
+
   return (
     <div className='m-8'>
       <span className='ml-48 bg-slate-500 p-1 text-white'>
@@ -154,7 +157,7 @@ function AddSinhHoat() {
                   Thời gian
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
-                  <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.thoigian} onChange={(date) => setValues({ ...values, thoigian: date })} />
+                  <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.thoigian} showTimeSelect onChange={(date) => setValues({ ...values, thoigian: date })} />
                 </div>
               </div>
 

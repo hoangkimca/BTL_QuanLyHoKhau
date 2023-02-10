@@ -84,7 +84,7 @@ function DanhSachSinhHoat() {
                 </thead>
                 <tbody className="divide-y divide-gray-200 bg-white">
                   {data.map((item) => (
-                    <ChiTietBuoiHop item={item} />
+                    <ChiTietBuoiHop key={item.id} item={item} />
                   ))
                   }
                 </tbody>

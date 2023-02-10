@@ -17,6 +17,11 @@ function ChiTietBuoiHop({ item }) {
     }
   }
 
+  const dateString = item.thoigian;
+  const date = new Date(dateString);
+  const offset = date.getTimezoneOffset() * 60 * 1000;
+  const formattedDate = new Date(date.getTime() + offset).toISOString().substring(0, 19).replace('T', ' ');
+  console.log(formattedDate); // Output: 2023-02-10 21:00:00
   return (
     <tr key={item.id}>
       <td className="whitespace-nowrap text-sm sm:pl-6">
@@ -105,7 +110,7 @@ function ChiTietBuoiHop({ item }) {
                             <span className='text-base text-black mr-1'>
                               Thời gian:
                             </span>
-                            {item.thoigian.split('T')[0]}
+                            {formattedDate}
                           </p>
                         </div>
                         <div className="mt-2">
