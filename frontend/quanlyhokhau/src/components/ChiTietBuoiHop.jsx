@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router-dom';
 function ChiTietBuoiHop({ item }) {
   const [open, setOpen] = useState(false);
   const [arr, setArr] = useState([]);
+  const navigate = useNavigate();
 
   const handleOpenModal = (item) => {
-    const navigate = useNavigate();
 
     console.log("item", item);
     setOpen(true);
