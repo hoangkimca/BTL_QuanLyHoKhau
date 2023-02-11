@@ -6,7 +6,7 @@ import com.example.demo.payloads.response.CommonResponse;
 public interface HoKhauService {
   CommonResponse<Object> themHoKhau(HoKhauRequest request);
 
-  CommonResponse<Object> danhsachHokhau(int page);
+  CommonResponse<Object> danhsachHokhau(int page, String text);
 
   CommonResponse<Object> suaHoKhau(HoKhauRequest request);
 

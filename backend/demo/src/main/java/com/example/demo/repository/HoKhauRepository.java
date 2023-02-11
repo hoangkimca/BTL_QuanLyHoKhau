@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -15,4 +16,6 @@ public interface HoKhauRepository extends MongoRepository<HoKhau, String> {
     Optional<HoKhau> findByMahokhau(String mahokhau);
 
     Page<HoKhau> findAll(Pageable page);
+
+    Page<HoKhau> findByTenchuhoContainingIgnoreCase(Pageable page, String tenchuho);
 }

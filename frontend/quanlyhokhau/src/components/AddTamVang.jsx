@@ -77,6 +77,7 @@ function AddTamVang() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Mã giấy tạm vắng
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -93,6 +94,7 @@ function AddTamVang() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Mã hộ khẩu
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -109,6 +111,7 @@ function AddTamVang() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Họ tên
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -125,6 +128,7 @@ function AddTamVang() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Từ ngày
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.tungay} onChange={(date) => setValues({ ...values, tungay: date })} />

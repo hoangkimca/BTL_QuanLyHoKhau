@@ -92,6 +92,7 @@ function AddSinhHoat() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Mã buổi họp/sinh hoạt
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -108,6 +109,7 @@ function AddSinhHoat() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Chủ đề
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -124,6 +126,7 @@ function AddSinhHoat() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Nội dung
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -140,6 +143,7 @@ function AddSinhHoat() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Địa điểm
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <input
@@ -155,6 +159,7 @@ function AddSinhHoat() {
               <div className="sm:grid sm:grid-cols-3 sm:items-start sm:gap-4 sm:border-t sm:border-gray-200 sm:pt-5">
                 <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Thời gian
+                  <p className="text-xs font-light text-red-500">* Bắt buộc</p>
                 </label>
                 <div className="mt-1 sm:col-span-2 sm:mt-0">
                   <DatePicker className='border-1 rounded-md border-gray-300 drop-shadow-sm' showYearDropdown dateFormat='yyyy-MM-dd' selected={values.thoigian} showTimeSelect onChange={(date) => setValues({ ...values, thoigian: date })} />

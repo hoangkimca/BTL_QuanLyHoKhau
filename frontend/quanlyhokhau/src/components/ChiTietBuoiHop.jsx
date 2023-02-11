@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
-import { ExclamationTriangleIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { useNavigate } from 'react-router-dom';
 
 function ChiTietBuoiHop({ item }) {
@@ -9,8 +9,6 @@ function ChiTietBuoiHop({ item }) {
   const navigate = useNavigate();
 
   const handleOpenModal = (item) => {
-
-    console.log("item", item);
     setOpen(true);
     if (item.dsduocmoi) {
       setArr(item.dsduocmoi);
@@ -21,7 +19,6 @@ function ChiTietBuoiHop({ item }) {
   const date = new Date(dateString);
   const offset = date.getTimezoneOffset() * 60 * 1000;
   const formattedDate = new Date(date.getTime() + offset).toISOString().substring(0, 19).replace('T', ' ');
-  console.log(formattedDate); // Output: 2023-02-10 21:00:00
   return (
     <tr key={item.id}>
       <td className="whitespace-nowrap text-sm sm:pl-6">

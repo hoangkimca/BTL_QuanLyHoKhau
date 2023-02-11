@@ -4,7 +4,6 @@ import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Menu } from '@headlessui/react'
 import { useNavigate } from 'react-router-dom'
-import { Bar, Doughnut, Line } from "react-chartjs-2";
 import { Chart, registerables } from 'chart.js';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

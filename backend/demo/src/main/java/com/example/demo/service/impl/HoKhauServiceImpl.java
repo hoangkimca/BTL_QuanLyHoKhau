@@ -80,15 +80,19 @@ public class HoKhauServiceImpl implements HoKhauService {
   }
 
   @Override
-  public CommonResponse<Object> danhsachHokhau(int page) {
+  public CommonResponse<Object> danhsachHokhau(int page, String text) {
     CommonResponse<Object> response = new CommonResponse<>();
     
     ArrayList<HoKhau> danhsachhokhau = new ArrayList<>();
     
     Pageable paging = PageRequest.of(page, 5);
     Page<HoKhau> pageHoKhau;
+
+    //Page<HoKhau> dsfindtheoten = hoKhauRepository.findByTenchuhoContainingIgnoreCase(text);
+
+    //log.info("ten duoc find{}",dsfindtheoten.toString());
     
-    pageHoKhau = hoKhauRepository.findAll(paging);
+    pageHoKhau = hoKhauRepository.findByTenchuhoContainingIgnoreCase(paging, text);
     pageHoKhau.getContent();
     if(pageHoKhau.getContent().size() > 0){
       for(HoKhau item : pageHoKhau.getContent()){

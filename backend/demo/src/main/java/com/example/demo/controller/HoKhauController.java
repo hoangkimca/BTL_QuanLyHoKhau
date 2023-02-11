@@ -46,11 +46,11 @@ public class HoKhauController {
   }
 
   @GetMapping(value="/gethokhau")
-  public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "0") int page) {
+  public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "0") int page, @RequestParam(required = true, defaultValue = "") String text) {
     //TODO: process POST request
     CommonResponse<Object> response = new CommonResponse<Object>();
     try {
-      response = hoKhauService.danhsachHokhau(page);
+      response = hoKhauService.danhsachHokhau(page, text);
     } catch (Exception e) {
       // TODO: handle exception
       log.error(e);
