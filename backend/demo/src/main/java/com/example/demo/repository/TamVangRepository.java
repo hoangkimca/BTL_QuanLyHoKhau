@@ -16,4 +16,7 @@ public interface TamVangRepository extends MongoRepository<TamVang, String> {
 
   Page<TamVang> findAll(Pageable page);
 
+  Page<TamVang> findByHotenContainingIgnoreCase(Pageable page, String hoten);
+
+
 }

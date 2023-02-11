@@ -88,7 +88,7 @@ public class TamVangServiceImpl implements TamVangService {
   }
 
   @Override
-  public CommonResponse<Object> danhsachTamVang(int page) {
+  public CommonResponse<Object> danhsachTamVang(int page, String text) {
     CommonResponse<Object> response = new CommonResponse<>();
     
     ArrayList<TamVang> danhsachtamvang = new ArrayList<>();
@@ -96,7 +96,7 @@ public class TamVangServiceImpl implements TamVangService {
     Pageable paging = PageRequest.of(page, 5);
     Page<TamVang> pageTamVang;
     
-    pageTamVang = tamVangRepository.findAll(paging);
+    pageTamVang = tamVangRepository.findByHotenContainingIgnoreCase(paging, text);
     pageTamVang.getContent();
     if(pageTamVang.getContent().size() > 0){
       for(TamVang item : pageTamVang.getContent()){

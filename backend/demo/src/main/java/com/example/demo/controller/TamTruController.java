@@ -45,11 +45,11 @@ public class TamTruController {
   }
 
   @GetMapping(value="/gettamtru")
-  public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "0") int page) {
+  public CommonResponse<Object> getHoKhau(@RequestParam(required = true, defaultValue = "0") int page, @RequestParam(required = true, defaultValue = "") String text) {
     //TODO: process POST request
     CommonResponse<Object> response = new CommonResponse<Object>();
     try {
-      response = tamTruService.danhsachTamTru(page);
+      response = tamTruService.danhsachTamTru(page, text);
     } catch (Exception e) {
       // TODO: handle exception
       log.error(e);

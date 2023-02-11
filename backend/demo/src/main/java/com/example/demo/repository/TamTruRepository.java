@@ -12,7 +12,9 @@ public interface TamTruRepository extends MongoRepository<TamTru, String> {
   Optional<TamTru> findByMagiaytamtru(String magiaytamtru);
 
   Optional<TamTru> deleteByMagiaytamtru(String magiaytamtru);
+  
   Page<TamTru> findAll(Pageable page);
 
+  Page<TamTru> findByHotenContainingIgnoreCase(Pageable page, String hoten);
 
 }

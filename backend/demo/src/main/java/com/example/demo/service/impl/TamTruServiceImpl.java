@@ -76,7 +76,7 @@ public class TamTruServiceImpl implements TamTruService {
   }
 
   @Override
-  public CommonResponse<Object> danhsachTamTru(int page) {
+  public CommonResponse<Object> danhsachTamTru(int page, String text) {
     CommonResponse<Object> response = new CommonResponse<>();
     
     ArrayList<TamTru> danhsachtamtru = new ArrayList<>();
@@ -84,7 +84,7 @@ public class TamTruServiceImpl implements TamTruService {
     Pageable paging = PageRequest.of(page, 5);
     Page<TamTru> pageTamTru;
     
-    pageTamTru = tamTruRepository.findAll(paging);
+    pageTamTru = tamTruRepository.findByHotenContainingIgnoreCase(paging, text);
     pageTamTru.getContent();
     if(pageTamTru.getContent().size() > 0){
       for(TamTru item : pageTamTru.getContent()){
