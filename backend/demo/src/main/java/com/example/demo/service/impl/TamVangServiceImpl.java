@@ -98,6 +98,7 @@ public class TamVangServiceImpl implements TamVangService {
     
     pageTamVang = tamVangRepository.findByHotenContainingIgnoreCase(paging, text);
     pageTamVang.getContent();
+    log.info("danh sach {}", pageTamVang.getContent());
     if(pageTamVang.getContent().size() > 0){
       for(TamVang item : pageTamVang.getContent()){
         danhsachtamvang.add(item);

@@ -26,7 +26,7 @@ function DanhSachTamVang() {
 
   useEffect(() => {
     const loadData = async () => {
-      let resPage = await axios.get(`${gettamvangRoute}?page=${page}&text=${text}`)
+      let resPage = await axios.get(`${gettamvangRoute}?page=${page}&text=${find}`)
 
       if (resPage.status == 200) {
         let res = await resPage.data.data;
